@@ -1,0 +1,49 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  max-height: auto;
+  width: auto;
+  height: auto;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin: 16px 16px;;
+  font-size: 24px;
+}
+
+.carrousel-image {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+  object-fit: contain;
+}
+
+.carousel-button {
+  background-color: #c0c0c080;
+  color: #FFFFFF;
+  font-size: 32px;
+  max-width: 1.5em;
+  max-height: 1.5em;
+  width: 1.5em;
+  height: 1.5em;
+  justify-items: center;
+  vertical-align: middle;
+  /*padding: 8px 8px;*/
+  border: solid 1px #707070;
+  border-radius: 8px;
+  padding: 0px 0px;
+}
+
+.carousel-button-left {
+  position: absolute;
+  float: left;
+  left:  64px;
+}
+
+.carousel-button-right {
+  position: absolute;
+  float: right;
+  right: 64px;
+}
