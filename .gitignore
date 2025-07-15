@@ -149,6 +149,8 @@ tmp
 bak
 *.tmp
 *.bak
+*.bak.*
+*.tmp.*
 
 # debug
 npm-debug.log*
