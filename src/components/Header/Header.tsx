@@ -38,14 +38,14 @@ function Header () {
           <input className="header-searchboxinput" type="text" placeholder="O que você está procurando?" onChange={handleOnChange}>
           </input>
           <button className="header-lupa" onClick={onClickSearch}>
-            <FontAwesomeIcon icon={faSearch} color="#878787"/>
+            <FontAwesomeIcon icon={faSearch} />
             {
             //<img alt="Pesquisar" src={IconeLupa} className="header-lupa" />
             }
           </button>
         </div>
-        <div>
-          <FontAwesomeIcon icon={faCartShopping} color="#878787"/>
+        <div className="header-iconcart">
+          <FontAwesomeIcon icon={faCartShopping} />
           {
           //<img alt="IconeBolsa" src={IconeBolsa} />
           }

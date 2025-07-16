@@ -1,10 +1,11 @@
-.header-header {
+.header {
   display: block;
   width: 100vw;
   max-height: auto;
-  padding: 8px 8px;
+  padding: 0px 0px;
   /*background-image: linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);*/
   background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-top {
@@ -23,6 +24,7 @@
   padding: 0px;
   margin: 0px;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .header-logo {
@@ -99,6 +101,12 @@
   background-color: transparent;
 }
 
+.header-iconcart {
+  font-size: 20px;
+  color: #878787;
+  cursor: pointer;
+}
+
 .header-bottom {
   display: flex;
   align-items: center;
@@ -119,10 +127,16 @@
   padding: 8px 8px;
 }
 
+.header-nav a, .header-nav h2, .header-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+}
+
 .header-aba {
   display: inline;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 12px;
+  margin-right: 12px;
   font-weight: normal;
   font-size: 16pt;
 }
@@ -134,11 +148,7 @@
   font-weight: bold;
   font-size: 12pt;
   color: #DC6060;
-}
-
-.header {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
  
 .header-top {
@@ -146,7 +156,7 @@
   border-bottom: 1px solid #e5e5e5;
 }
  
-.container {
+.header-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -155,7 +165,7 @@
   justify-content: space-between;
 }
  
-.logo {
+.header-logo-small {
   font-size: 16px;
   font-weight: bold;
   color: #333;
