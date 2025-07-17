@@ -1,6 +1,7 @@
 .banner-compra {
   background-color: #DB995D;
-  width: 100vw;
+  width: calc(100dvw - 64px);
+  max-width: 100%;
   padding: 8px 32px;
   margin: 0px 0px;
 }
@@ -22,9 +23,11 @@
 
 .banner-botao-compra {
   background-color: #FFFFFF;
+  color: #000000;
   border: solid 0px #C3C3C3;
   border-radius: 8px;
   padding: 2px 16px;
+  margin: 0px 0px;
   cursor: pointer;
   /*box-shadow: #00000080 0px 2px 8px 2px;*/
 }

@@ -11,7 +11,7 @@ function Header () {
   const [textoBusca, setTextoBusca] = useState('');
   
   function onClickSearch(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    console.log(`Você pesquisou por: ${textoBusca}`);
+    console.log(`Você pesquisou por: ${textoBusca}`, (event===undefined) ? event : undefined);
   }
   
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>): void {

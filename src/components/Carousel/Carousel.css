@@ -13,11 +13,16 @@
 }
 
 .carrousel-image {
-  max-width: 100%;
+  max-width: 100dvw;
   width: 100%;
-  height: auto;
+  height: 50dvw;
+  max-height: 800px;
+  min-height: 240px;
   image-rendering: auto;
-  object-fit: contain;
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  /*object-fit: contain;*/
 }
 
 .carousel-button {

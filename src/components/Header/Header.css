@@ -1,8 +1,10 @@
 .header {
   display: block;
-  width: 100vw;
+  width: 100%;
+  max-width: 100vw;
   max-height: auto;
   padding: 0px 0px;
+  margin: 0px 0px;
   /*background-image: linear-gradient(180deg, #ffffff 0%, #eeeeee 100%);*/
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -56,11 +58,11 @@
   margin-right: 20px;
 }
 
-.header-searchboxinput {
+.header-searchboxinput, input.header-searchboxinput, input.header-searchboxinput[type="text"] {
   display: inline;
   background-color: #F5F6F5;
   /*border: solid 1px #333333;*/
-  border: none;
+  border: none 0px transparent;
   max-width: 75vw;
   width: 100%;
   min-width: 20rem;
@@ -73,21 +75,9 @@
   margin-right: 20px;
 }
 
-.header-searchboxinput::placeholder {
-  display: inline;
-  background-color: #F5F6F5;
-  /*border: solid 1px #333333;*/
-  border: none;
-  max-width: 70vw;
-  width: 90%;
-  min-width: 22rem;
-  height: 3rex;
-  border-radius: 8px;
-  padding: 8px;
+.header-searchboxinput::placeholder, input .header-searchboxinput::placeholder {
   color: #9C9C9C;
-  position: relative;
-  top: 0px;
-  margin-right: 20px;
+  border: none 0px transparent;
 }
 
 .header-lupa {
@@ -123,7 +113,7 @@
   align-content: center;
   justify-content: left;
   max-width: 100vw;
-  max-height: 32pt;
+  height: 32pt;
   padding: 8px 8px;
 }
 

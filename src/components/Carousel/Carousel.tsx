@@ -16,14 +16,17 @@ const imagens = [
   {
     key: 1,
     src: promo1,
+    title: "corporal",
   },
   {
     key: 2,
     src: promo2,
+    title: "kits incríveis",
   },
   {
     key: 3,
     src: promo3,
+    title: "linha anti-age",
   },
 ];
 
@@ -40,7 +43,7 @@ function Carousel () {
   }
   
   useEffect((() => {
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       nextItem();
     }, 5000);
     
@@ -57,8 +60,8 @@ function Carousel () {
       <button className="carousel-button carousel-button-right" onClick={nextItem}>
         <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
       </button>
-      <img className="carrousel-image" src={imagens[carouselImage].src} alt="corporal">
-      </img>
+      <picture className="carrousel-image" style={{backgroundImage: `url('${imagens[carouselImage].src}')`}} title={`${imagens[carouselImage].title}`}>
+      </picture>
       {
       //<img className="carrousel-image" src={promo2} alt="kits incríveis">
       //</img>

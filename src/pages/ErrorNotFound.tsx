@@ -3,15 +3,15 @@ import './ErrorNotFound.css';
 import { useParams } from 'react-router';
 
 function ErrorNotFound() {
-  let urlpath = useParams()["*"];
+  const urlpath = useParams()["*"];
   
   return (
     <div className="pagina">
-      <h1 style={{textAlign: "center"}}>
+      <h1 className="center">
         404 Not Found
       </h1>
-      <p style={{textAlign: "center"}}>
-        Não foi possível encontrar a página requisitada na URL "/{urlpath}".
+      <p className="center">
+        Não foi possível encontrar a página requisitada na URL &quot;/{urlpath}&quot;.
       </p>
     </div>
   );

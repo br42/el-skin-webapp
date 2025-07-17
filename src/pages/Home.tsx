@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from '../components/Carousel/Carousel';
+import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
 import './Home.css';
 
 function Home() {
@@ -17,6 +18,8 @@ function Home() {
         //</h1>
         }
         <Carousel />
+        
+        <ProductShowcase />
       </div>
     </>
   );
