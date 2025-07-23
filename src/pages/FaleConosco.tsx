@@ -1,4 +1,3 @@
-import React from 'react';
 import './FaleConosco.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -33,10 +32,8 @@ function FaleConosco() {
             {
             //<fieldset className="contato-categoria">
             <>
-              {
-                <legend>Categoria:</legend>
-                //<p>Categoria:</p>
-              }
+              <legend>Categoria:</legend>
+              
               <div>
                 <input type="checkbox" id="contato-categoria-duvidas" /><>
                   <label htmlFor="contato-categoria-duvidas">Dúvidas</label>

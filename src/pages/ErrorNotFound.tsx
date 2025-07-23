@@ -1,4 +1,3 @@
-import React from 'react';
 import './ErrorNotFound.css';
 import { useParams } from 'react-router';
 

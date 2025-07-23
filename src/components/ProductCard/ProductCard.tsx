@@ -1,9 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ProductCard.css";
-import { useState, useEffect, ReactNode } from "react";
+import { ReactNode } from "react";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductCard ({ product, idkey } : { 
   product:{
@@ -13,16 +11,6 @@ function ProductCard ({ product, idkey } : {
     }[]
   }, idkey:number 
 }) {
-  //const [carouselImage, setCarouselImage] = useState(0);
-  useState(null);
-  
-  useEffect((() => {
-    
-    
-    return (() => {
-      
-    });
-  }), []);
   
   return ( product &&
     <div className="productcard" key={idkey}>

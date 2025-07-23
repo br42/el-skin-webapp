@@ -1,18 +1,9 @@
 import ProductCard from '../ProductCard/ProductCard';
 import "./ProductShowcase.css";
-import { useState, useEffect } from "react";
-import promo1 from '../../assets/images/Group 6.png';
-import promo2 from '../../assets/images/Group 7.png';
-import promo3 from '../../assets/images/Group 8.png';
+import promo1 from '../../assets/images/image 4.png';
+import promo2 from '../../assets/images/image 2.png';
+import promo3 from '../../assets/images/image 1.png';
 import creme1 from '../../assets/images/image 8.png';
-//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
-//import { faSearch } from "@fortawesome/free-solid-svg-icons";
-//import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-//import IconeBolsa from "../../assets/bolsa.svg";
-//import IconeLupa from "../../assets/lupa.svg";
-//import Logo from "../../assets/logo.svg";
 
 const produtos = [
   {
@@ -106,15 +97,7 @@ const produtos = [
 ];
 
 function ProductShowcase () {
-  //const [carouselImage, setCarouselImage] = useState(0);
-  useState(null);
   
-  useEffect((() => {
-    
-    return (() => {
-      
-    });
-  }), []);
   
   return (
     <div className="productshowcase">
