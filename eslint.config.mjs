@@ -11,8 +11,15 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {settings: {
+    react: {
+      "version": "detect",
+    }
+  }},
   {rules: {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx", ".ts"] }],
+    //"@typescript-eslint/no-explicit-any": "off",
+    //"@typescript-eslint/no-unused-vars": "off",
   }},
 ];

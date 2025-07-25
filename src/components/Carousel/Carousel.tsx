@@ -1,63 +1,42 @@
 import "./Carousel.css";
-import { useState, useEffect } from "react";
-import promo1 from '../../assets/images/image 4.png';
-import promo2 from '../../assets/images/image 2.png';
-import promo3 from '../../assets/images/image 1.png';
+//import "../../assets/images";
+import { useState, useEffect, ReactNode, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
-const imagens = [
-  {
-    key: 1,
-    src: promo1,
-    title: "corporal",
-    banner: {
-      top: "confira nossa linha",
-      title: "corporal",
-      buttom: "com benefícios além da hidratação",
-      desconto: null,
-      cupom: null,
-      url: "#"
-    }
-  },
-  {
-    key: 2,
-    src: promo2,
-    title: "kits incríveis",
-    banner: {
-      top: "confira nossa linha",
-      title: "kits incríveis",
-      desconto: "até 50% OFF",
-      buttom: "use o cupom",
-      cupom: "QUEROTODOS",
-      url: "#"
-    }
-  },
-  {
-    key: 3,
-    src: promo3,
-    title: "linha anti-age",
-    banner: {
-      top: "toda linha",
-      title: "anti-age",
-      desconto: "com 15% OFF",
-      buttom: "use o cupom",
-      cupom: "ANTIAGE15",
-      url: "#"
-    }
-  },
-];
+export interface CarouselImagem {
+  id: number,
+  subtitle: string | ReactNode,
+  title: string | ReactNode,
+  description: string | ReactNode,
+  desconto: string | ReactNode | null | undefined,
+  cupom: string | ReactNode | null | undefined,
+  backgroundImage: string | ReactNode,
+  url: string | null | undefined
+};
 
 function Carousel () {
   const [carouselImage, setCarouselImage] = useState(0);
+  const [imagens, setImagens] = useState([] as CarouselImagem[]);
   
-  function nextItem () {
-    setCarouselImage((item) => ((item + 1) % (imagens.length)));
-  }
+  useEffect(() => {
+    axios.get("http://localhost:3001/carousel", {}).then((req) => {
+      setImagens(req.data);
+    });
+    
+    return (() => {
+      setImagens([]);
+    });
+  },[]);
   
-  function previousItem () {
-    setCarouselImage((item) => ((imagens.length + item - 1) % (imagens.length)));
-  }
+  const nextItem = useCallback(function () {
+    setCarouselImage((item) => ((item + 1) % (imagens.length ? imagens.length : 1)));
+  }, [imagens]);
+  
+  const previousItem = useCallback(function () {
+    setCarouselImage((item) => ((imagens.length + item - 1) % (imagens.length ? imagens.length : 1)));
+  }, [imagens]);
   
   useEffect((() => {
     const timer = setInterval(() => {
@@ -67,7 +46,7 @@ function Carousel () {
     return (() => {
       clearInterval(timer);
     });
-  }), []);
+  }), [nextItem]);
   
   return (
     <div className="carousel">
@@ -77,32 +56,32 @@ function Carousel () {
       <button className="carousel-button carousel-button-right" onClick={nextItem}>
         <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
       </button>
-      <picture className="carrousel-image" style={{backgroundImage: `url('${imagens[carouselImage].src}')`}} title={`${imagens[carouselImage].title}`} >
+      <picture className="carrousel-image" style={{backgroundImage: `url('${imagens[carouselImage]?.backgroundImage}')`}} title={`${imagens[carouselImage]?.title}`} >
         <div className="carrousel-image-banner-container">
           <div className="carrousel-image-banner-text">
             <div className="carrousel-image-banner-top">
-              {imagens[carouselImage]?.banner?.top || null}
+              {imagens[carouselImage]?.subtitle || null}
             </div>
             <div className="carrousel-image-banner-title">
-              {imagens[carouselImage]?.banner?.title || null}
+              {imagens[carouselImage]?.title || null}
             </div>
             {
-              imagens[carouselImage]?.banner?.desconto &&
+              imagens[carouselImage]?.desconto &&
               <div className="carrousel-image-banner-desconto">
-                {imagens[carouselImage]?.banner?.desconto || null}
+                {imagens[carouselImage]?.desconto || null}
               </div>
             }
             <div className="carrousel-image-banner-bottom">
-              {imagens[carouselImage]?.banner?.buttom || null}
+              {imagens[carouselImage]?.description || null}
             </div>
             {
-              imagens[carouselImage]?.banner?.cupom && 
+              imagens[carouselImage]?.cupom && 
               <div className="carrousel-image-banner-cupom">
-                {imagens[carouselImage]?.banner?.cupom || null}
+                {imagens[carouselImage]?.cupom || null}
               </div>
             }
           </div>
-          <a href={imagens[carouselImage]?.banner?.url || "#"}>
+          <a href={imagens[carouselImage]?.url || "#"}>
             <button className="carrousel-image-banner-botao-comprar" >
               <span>
                 {"comprar agora"}
