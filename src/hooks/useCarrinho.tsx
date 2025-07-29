@@ -3,7 +3,17 @@ import { useState, useCallback } from 'react';
 //export type LitObject = {[key:string]: unknown};
 export type CarrinhoItem = {id: string, quantidade: number, preco: number, [key:string]: unknown};
 
-export default function useCarrinho () {
+export type UseCarrinhoType = {
+  itens: CarrinhoItem[],
+  addItem: unknown,
+  removeItem: unknown,
+  setQuantidade: unknown,
+  limparCarrinho: unknown,
+  getQuantidadeTotalItens: unknown,
+  getPrecoTotal: unknown
+};
+
+export default function useCarrinho () : UseCarrinhoType {
   const [ itens, setItens ] = useState<CarrinhoItem[]>([]);
   const addItem = useCallback((novoItem: CarrinhoItem) : void => {
     if (itens.find((item) => (novoItem.id === item.id))) {

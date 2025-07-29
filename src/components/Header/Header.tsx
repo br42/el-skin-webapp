@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import Carrinho from '../Carrinho/Carrinho';
 
 function Header () {
   const [textoBusca, setTextoBusca] = useState('');
+  const [isCarrinhoAberto, setIsCarinhoAberto] = useState(false);
   
   function onClickSearch(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
     console.log(`Você pesquisou por: ${textoBusca}`, (event===undefined) ? event : undefined);
@@ -14,6 +16,10 @@ function Header () {
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setTextoBusca(e.target.value);
   }
+  
+  const fechouCarrinho = () => {
+    setIsCarinhoAberto(false);
+  };
   
   return (
     <header className="header">
@@ -54,6 +60,11 @@ function Header () {
           Hits até 50% OFF
         </strong>
       </div>
+      
+      <Carrinho
+        isAberto={isCarrinhoAberto}
+        onClose={fechouCarrinho}
+      />
     </header>
   );
 }
