@@ -1,15 +1,15 @@
-import "./ProductCard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-import { ReactNode } from "react";
+import './ProductCard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { ReactNode } from 'react';
 
-export interface ProductCardTag {
+export type ProductCardTag = {
   name: string,
   fgcolor: string | null | undefined,
   bgcolor: string | null | undefined
 }
 
-export interface ProductCardItem {
+export type ProductCardItem = {
   id: number,
   name: string | ReactNode,
   description: string | ReactNode | null | undefined,
@@ -44,7 +44,7 @@ function ProductCard ({ product, id } : {
             {
               product.tags && product.tags.map((tag: ProductCardTag, index: number) => {
                 return (
-                  <span className="productcard-tag-label" key={index} style={{backgroundColor: tag.bgcolor || "#808080", color: tag.fgcolor || "#FFFFFF"}}>
+                  <span className="productcard-tag-label" key={index} style={{backgroundColor: tag.bgcolor || '#808080', color: tag.fgcolor || '#FFFFFF'}}>
                     {tag.name}
                   </span>
                 ); 
@@ -53,7 +53,7 @@ function ProductCard ({ product, id } : {
           </div>
           <div className="productcard-bottom">
             <span>
-              <strong>{`R$ ${product?.price?.toPrecision(4)}`}</strong>
+              <strong>{(product?.price) && `R$ ${product?.price?.toPrecision(4)}`}</strong>
             </span>
             <button className="productcard-button-comprar">
               <span><strong>comprar</strong></span>

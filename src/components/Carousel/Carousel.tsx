@@ -1,9 +1,9 @@
-import "./Carousel.css";
+import './Carousel.css';
 //import "../../assets/images";
-import { useState, useEffect, ReactNode, useCallback } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import { useState, useEffect, ReactNode, useCallback } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 export interface CarouselImagem {
   id: number,
@@ -21,7 +21,7 @@ function Carousel () {
   const [imagens, setImagens] = useState([] as CarouselImagem[]);
   
   useEffect(() => {
-    axios.get("http://localhost:3001/carousel", {}).then((req) => {
+    axios.get('http://localhost:3001/carousel', {}).then((req) => {
       setImagens(req.data);
     });
     
@@ -81,10 +81,10 @@ function Carousel () {
               </div>
             }
           </div>
-          <a href={imagens[carouselImage]?.url || "#"}>
+          <a href={imagens[carouselImage]?.url || '#'}>
             <button className="carrousel-image-banner-botao-comprar" >
               <span>
-                {"comprar agora"}
+                {'comprar agora'}
               </span>
               <FontAwesomeIcon icon={faArrowRight} />
             </button>

@@ -1,8 +1,8 @@
-import "./Header.css";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import './Header.css';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 function Header () {
   const [textoBusca, setTextoBusca] = useState('');
@@ -31,7 +31,7 @@ function Header () {
           </button>
         </div>
         <div className="header-iconcart">
-          <FontAwesomeIcon icon={faCartShopping} />
+          <FontAwesomeIcon icon={faCartShopping} onClick={undefined} />
         </div>
       </div>
       <div className="header-bottom">

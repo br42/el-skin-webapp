@@ -1,9 +1,11 @@
-import React, { createContext, ReactNode, FC } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import useCarrinho from '../hooks/useCarrinho';
 
-const CarrinhoContext = createContext<Record<string,unknown>|unknown>(undefined);
+export const CarrinhoContext = createContext<Record<string,unknown>|undefined>(undefined as Record<string,unknown>|undefined);
 
-export const CarrinhoContextProvider : FC<{children: ReactNode}> = ({children} : {children: ReactNode}) => {
+//export const CarrinhoContextProvider = useCarrinho();
+
+export const CarrinhoContextProvider = ({children} : {children?: ReactNode}) => {
   const carrinho = useCarrinho();
   
   return <CarrinhoContext value={carrinho}>
@@ -11,4 +13,14 @@ export const CarrinhoContextProvider : FC<{children: ReactNode}> = ({children} :
   </CarrinhoContext>;
 };
 
-export default CarrinhoContextProvider;
+export const useCarrinhoContext = () : Record<string,unknown> => {
+  const contexto = useContext<Record<string,unknown>|undefined>(CarrinhoContext);
+  
+  if (!contexto) {
+    throw Error('useCarrinhoContext foi chamado fora de um CarrinhoContextProvider');
+  }
+  
+  return contexto;
+};
+
+export default CarrinhoContextProvider; 

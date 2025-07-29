@@ -1,11 +1,12 @@
 import './Carrinho.css';
-//import { CarrinhoContextProvider } from '../../context/CarrinhoContext';
-//import {  FC, ReactNode, useContext } from 'react';
+import { useCarrinhoContext } from '../../context/CarrinhoContext';
 
 function Carrinho () {
-  //const carrinhoItens = useContext<FC<{children : ReactNode}>>(CarrinhoContextProvider);
+  const carrinhoItens = useCarrinhoContext();
   
-  //return;
+  return <>
+    {carrinhoItens}
+  </>;
 }
 
 export default Carrinho;

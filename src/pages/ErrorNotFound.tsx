@@ -2,7 +2,7 @@ import './ErrorNotFound.css';
 import { useParams } from 'react-router';
 
 function ErrorNotFound() {
-  const urlpath = useParams()["*"];
+  const urlpath = useParams()['*'];
   
   return (
     <div className="pagina">

@@ -31,32 +31,32 @@ function FaleConosco() {
           <section className="contato-categoria">
             {
             //<fieldset className="contato-categoria">
-            <>
-              <legend>Categoria:</legend>
+              <>
+                <legend>Categoria:</legend>
               
-              <div>
-                <input type="checkbox" id="contato-categoria-duvidas" /><>
-                  <label htmlFor="contato-categoria-duvidas">Dúvidas</label>
-                </>
-                <input type="checkbox" id="contato-categoria-problemapedido" /><>
-                  <label htmlFor="contato-categoria-problemapedido">Problema com pedido</label>
-                </>
-                <input type="checkbox" id="contato-categoria-reclamacao" /><>
-                  <label htmlFor="contato-categoria-reclamacao">Reclamação</label>
-                </>
-              </div>
-              <div>
-                <input type="checkbox" id="contato-categoria-sugestao" /><>
-                  <label htmlFor="contato-categoria-sugestao">Sugestão</label>
-                </>
-                <input type="checkbox" id="contato-categoria-elogios" /><>
-                  <label htmlFor="contato-categoria-elogios">Elogios</label>
-                </>
-                <input type="checkbox" id="contato-categoria-outro" /><>
-                  <label htmlFor="contato-categoria-outro">Outro</label>
-                </>
-              </div>
-            </>
+                <div>
+                  <input type="checkbox" id="contato-categoria-duvidas" /><>
+                    <label htmlFor="contato-categoria-duvidas">Dúvidas</label>
+                  </>
+                  <input type="checkbox" id="contato-categoria-problemapedido" /><>
+                    <label htmlFor="contato-categoria-problemapedido">Problema com pedido</label>
+                  </>
+                  <input type="checkbox" id="contato-categoria-reclamacao" /><>
+                    <label htmlFor="contato-categoria-reclamacao">Reclamação</label>
+                  </>
+                </div>
+                <div>
+                  <input type="checkbox" id="contato-categoria-sugestao" /><>
+                    <label htmlFor="contato-categoria-sugestao">Sugestão</label>
+                  </>
+                  <input type="checkbox" id="contato-categoria-elogios" /><>
+                    <label htmlFor="contato-categoria-elogios">Elogios</label>
+                  </>
+                  <input type="checkbox" id="contato-categoria-outro" /><>
+                    <label htmlFor="contato-categoria-outro">Outro</label>
+                  </>
+                </div>
+              </>
             //</fieldset>
             }
           </section>
