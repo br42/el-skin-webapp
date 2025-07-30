@@ -1,16 +1,24 @@
 import { useState, useCallback } from 'react';
 
-//export type LitObject = {[key:string]: unknown};
-export type CarrinhoItem = {id: string, quantidade: number, preco: number, [key:string]: unknown};
+// # export type LitObject = {[key:string]: unknown};
+export type CarrinhoItem = {
+  id: string,
+  name: string,
+  quantidade: number,
+  preco: number,
+  image: string,
+  url: string,
+  // # [prop: string]: unknown
+};
 
 export type UseCarrinhoType = {
   itens: CarrinhoItem[],
-  addItem: unknown,
-  removeItem: unknown,
-  setQuantidade: unknown,
-  limparCarrinho: unknown,
-  getQuantidadeTotalItens: unknown,
-  getPrecoTotal: unknown
+  addItem: (novoItem: CarrinhoItem) => void,
+  removeItem: (id: string) => void,
+  setQuantidade: (id: string, quantidade: number) => void,
+  limparCarrinho: () => void,
+  getQuantidadeTotalItens: () => number,
+  getPrecoTotal: () => number
 };
 
 export default function useCarrinho () : UseCarrinhoType {
@@ -24,7 +32,7 @@ export default function useCarrinho () : UseCarrinhoType {
   }, [itens]);
   
   const removeItem = useCallback((id: string) : void => {
-    setItens((atuaisItens) => atuaisItens.filter((item) => (item.id === id)));
+    setItens((atuaisItens) => atuaisItens.filter((item) => (item.id !== id)));
   }, [setItens]);
   
   const setQuantidade = useCallback((id: string, quantidade: number) : void => {

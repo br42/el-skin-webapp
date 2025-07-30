@@ -10,22 +10,29 @@ export type ProductCardTag = {
 }
 
 export type ProductCardItem = {
-  id: number,
-  name: string | ReactNode,
+  id: string,
+  name: string,
   description: string | ReactNode | null | undefined,
   desconto: string | ReactNode | null | undefined,
   price: number,
   tags: ProductCardTag[],
-  image: string | ReactNode,
+  image: string,
   url: string | null | undefined
 };
 
-function ProductCard ({ product, id } : { 
-  product: ProductCardItem, id: number 
+function formatarPreco (preco: number): string {
+  return (`R$ ${preco.toFixed(2).replace('.',',')}`);
+}
+
+function ProductCard ({ product, id, onCliqueProduto, onCliqueComprar } : { 
+  product: ProductCardItem,
+  id: string,
+  onCliqueProduto: (idProduto: string) => void,
+  onCliqueComprar: (idProduto: string, event: React.MouseEvent) => void
 }) {
   
   return ( product &&
-    <div className="productcard" key={id}>
+    <div className="productcard" key={id} onClick={() => onCliqueProduto}>
       {
         <picture className="productcard-picture" title={`${product?.name}`} style={{backgroundImage: `url('${product?.image}')`}}>
         </picture>
@@ -53,9 +60,11 @@ function ProductCard ({ product, id } : {
           </div>
           <div className="productcard-bottom">
             <span>
-              <strong>{(product?.price) && `R$ ${product?.price?.toPrecision(4)}`}</strong>
+              <strong>{(product?.price && typeof(product?.price)==='number') && formatarPreco(product?.price)}</strong>
             </span>
-            <button className="productcard-button-comprar">
+            <button className="productcard-button-comprar"
+              onClick={(e) => onCliqueComprar(product.id, e)}
+            >
               <span><strong>comprar</strong></span>
               
               <FontAwesomeIcon icon={faShoppingBag} />

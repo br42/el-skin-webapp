@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 
 type ObjetoBusca = {
   busca: string;
@@ -17,6 +17,16 @@ const BuscaContextProvider = ({children} : {children?: ReactNode}) => {
   return <BuscaContext value={contexto}>
     {children}
   </BuscaContext>;
+};
+
+export const useBuscaContext = () => {
+  const contexto = useContext(BuscaContext);
+  
+  if (!contexto) {
+    throw new Error('useBuscaContext deve ser usado dentro de um BuscaContextProvider');
+  }
+  
+  return contexto;
 };
 
 export default BuscaContextProvider;
