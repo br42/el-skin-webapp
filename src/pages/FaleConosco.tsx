@@ -6,81 +6,84 @@ import rightImg from '../assets/images/image 14.png';
 function FaleConosco() {
   return (
     <div className="pagina">
-      
-      <div>
-        <img alt="" className="sobre-img-float-right float-right" src={rightImg} />
-        
-        <h1>
-          Fale Conosco
-        </h1>
-        
-        <form id="faleconosco">
-          <div>
-            <input type="text" id="contato-nome" className="input-text" placeholder="Seu nome" />
-          </div>
-          <div>
-            <input type="text" id="contato-email" className="input-text" placeholder="Seu e-mail para contato" />
-          </div>
-          <div>
-            <input type="text" id="contato-telefone" className="input-text" placeholder="Seu telefone com DDD" />
-          </div>
-          <div>
-            <input type="text" id="contato-cpf" className="input-text" placeholder="Seu CPF" />
-          </div>
+      <div className="faleconosco-container">
+        <div className="faleconosco-container-left">
           
-          <section className="contato-categoria">
-            {
-            //<fieldset className="contato-categoria">
-              <>
-                <legend>Categoria:</legend>
-              
-                <div>
-                  <input type="checkbox" id="contato-categoria-duvidas" /><>
-                    <label htmlFor="contato-categoria-duvidas">Dúvidas</label>
-                  </>
-                  <input type="checkbox" id="contato-categoria-problemapedido" /><>
-                    <label htmlFor="contato-categoria-problemapedido">Problema com pedido</label>
-                  </>
-                  <input type="checkbox" id="contato-categoria-reclamacao" /><>
-                    <label htmlFor="contato-categoria-reclamacao">Reclamação</label>
-                  </>
-                </div>
-                <div>
-                  <input type="checkbox" id="contato-categoria-sugestao" /><>
-                    <label htmlFor="contato-categoria-sugestao">Sugestão</label>
-                  </>
-                  <input type="checkbox" id="contato-categoria-elogios" /><>
-                    <label htmlFor="contato-categoria-elogios">Elogios</label>
-                  </>
-                  <input type="checkbox" id="contato-categoria-outro" /><>
-                    <label htmlFor="contato-categoria-outro">Outro</label>
-                  </>
-                </div>
-              </>
-            //</fieldset>
-            }
-          </section>
+          <h1>
+            Fale Conosco
+          </h1>
           
-          <div>
-            <textarea id="contato-mensagem" className="input-textarea" placeholder="Sua mensagem..." />
-          </div>
+          <form id="faleconosco">
+            <div>
+              <input type="text" id="contato-nome" className="input-text" placeholder="Seu nome" />
+            </div>
+            <div>
+              <input type="text" id="contato-email" className="input-text" placeholder="Seu e-mail para contato" />
+            </div>
+            <div>
+              <input type="text" id="contato-telefone" className="input-text" placeholder="Seu telefone com DDD" />
+            </div>
+            <div>
+              <input type="text" id="contato-cpf" className="input-text" placeholder="Seu CPF" />
+            </div>
+            
+            <section className="contato-categoria">
+              {
+              //<fieldset className="contato-categoria">
+                <>
+                  <legend>Categoria:</legend>
+                
+                  <div>
+                    <input type="checkbox" id="contato-categoria-duvidas" /><>
+                      <label htmlFor="contato-categoria-duvidas">Dúvidas</label>
+                    </>
+                    <input type="checkbox" id="contato-categoria-problemapedido" /><>
+                      <label htmlFor="contato-categoria-problemapedido">Problema com pedido</label>
+                    </>
+                    <input type="checkbox" id="contato-categoria-reclamacao" /><>
+                      <label htmlFor="contato-categoria-reclamacao">Reclamação</label>
+                    </>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="contato-categoria-sugestao" /><>
+                      <label htmlFor="contato-categoria-sugestao">Sugestão</label>
+                    </>
+                    <input type="checkbox" id="contato-categoria-elogios" /><>
+                      <label htmlFor="contato-categoria-elogios">Elogios</label>
+                    </>
+                    <input type="checkbox" id="contato-categoria-outro" /><>
+                      <label htmlFor="contato-categoria-outro">Outro</label>
+                    </>
+                  </div>
+                </>
+              //</fieldset>
+              }
+            </section>
+            
+            <div>
+              <textarea id="contato-mensagem" className="input-textarea" placeholder="Sua mensagem..." />
+            </div>
+            
+            <p></p>
+            
+            <div>
+              <button type="submit" className="button-send">
+                <span>
+                  Enviar mensagem
+                </span>
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </div>
+          </form>
           
           <p></p>
-          
-          <div>
-            <button type="submit" className="button-send">
-              <span>
-                Enviar mensagem
-              </span>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </button>
-          </div>
-        </form>
-        
-        <p></p>
+        </div>
+        <div className="faleconosco-container-right">
+          <img alt="" className="sobre-img-float-right float-right" src={rightImg} />
+        </div>
       </div>
       
-      <div>
+      <div className="faleconosco-container-bottom">
         <h1>
           Ajuda - FAQ
         </h1>

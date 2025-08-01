@@ -1,0 +1,21 @@
+.sobre-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 8px;
+}
+
+.sobre-container-left {
+  width: 50%;
+}
+
+.sobre-container-right {
+  width: 50%;
+}
+
+.sobre-container-bottom {
+  width: 100%;
+}
+
