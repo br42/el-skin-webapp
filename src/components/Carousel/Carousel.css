@@ -35,11 +35,10 @@
   height: 1.5em;
   justify-items: center;
   vertical-align: middle;
-  /*padding: 8px 8px;*/
   border: solid 1px #707070;
   border-radius: 8px;
   padding: 0px 0px;
-  /*backdrop-filter: blur(8px);*/
+  backdrop-filter: blur(4px);
 }
 
 .carousel-button-left {
@@ -83,6 +82,7 @@
   padding: 16px 8px;
   border-radius: 16px;
   overflow: clip;
+  backdrop-filter: blur(2px);
 }
 
 .carrousel-image-banner-text {
