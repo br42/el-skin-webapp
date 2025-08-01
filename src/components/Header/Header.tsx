@@ -3,11 +3,14 @@ import { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useCarrinhoContext } from '../../context/CarrinhoContext';
 import Carrinho from '../Carrinho/Carrinho';
 
 function Header () {
   const [textoBusca, setTextoBusca] = useState('');
   const [isCarrinhoAberto, setIsCarinhoAberto] = useState(false);
+  
+  const carrinho = useCarrinhoContext();
   
   const handleOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     setTextoBusca(e.target.value);
@@ -40,8 +43,15 @@ function Header () {
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
-        <div className="header-iconcart">
-          <FontAwesomeIcon icon={faCartShopping} onClick={abrirCarrinho} />
+        <div className="header-iconcart" onClick={abrirCarrinho} >
+          <FontAwesomeIcon icon={faCartShopping}/>
+          { (carrinho?.getQuantidadeTotalItens() && carrinho?.getQuantidadeTotalItens()!==0) ?
+            <div className="header-iconcart-badge">
+              <span> </span>
+              <span>{carrinho?.getQuantidadeTotalItens()}</span>
+            </div>
+            : undefined
+          }
         </div>
       </div>
       <div className="header-bottom">

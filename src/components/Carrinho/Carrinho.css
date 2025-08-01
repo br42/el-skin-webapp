@@ -126,6 +126,7 @@
 .carrinho-quantidade-button {
   background: #555555;
   color: #FFFFFF;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -144,6 +145,7 @@
   background: #EE4444;
   color: #FFFFFF;
   margin-left: auto;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -186,4 +188,53 @@
   cursor: pointer;
   transition: all 0.2s;
   margin-top: 10px;
+}
+
+.carrinho-finalizar-button:hover {
+  background: linear-gradient(135deg, #7733EE, #9933EE);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px #8B5CF655;
+}
+
+/* Design Responsivo */
+@media (max-width: 768px) {
+  .carrinho-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+  
+  .carrinho-modal-header {
+    padding: 15px;
+  }
+  
+  .carrinho-modal-header-titulo {
+    font-size: 1.5rem;
+  }
+  
+  .carrinho-modal-conteudo {
+    padding: 15px;
+  }
+  
+  .carrinho-item {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .carrinho-item-imagem {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .carrinho-item-controles {
+    justify-content: space-between;
+  }
+  
+  .carrinho-quantidade-controles {
+    order: 1;
+  }
+  
+  .carrinho-remover-button {
+    order: 2;
+    margin-left: 0;
+  }
 }
