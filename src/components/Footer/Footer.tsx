@@ -1,9 +1,7 @@
-import "./Footer.css";
-//import { /*useState, useEffect*/ } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faInstagram, faFacebookF, faYoutube, faPinterest, faTwitter, faLinkedin, faSpotify } from "@fortawesome/free-brands-svg-icons";
-import { NavLink } from "react-router";
+import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faFacebookF, faYoutube, faPinterest, faTwitter, faLinkedin, faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { NavLink } from 'react-router';
 
 function Footer () {
   return (
@@ -105,7 +103,7 @@ function Footer () {
             AL SKIN
           </h1>
           <p>
-            2023 Al SKIN. Todos os direitos reservados.
+            2023 AL SKIN. Todos os direitos reservados.
           </p>
           <p>
             Av. Sete de Setembro, 467 - São Paulo/SP - CEP: 05324-980.

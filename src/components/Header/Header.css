@@ -92,8 +92,31 @@
 }
 
 .header-iconcart {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
   font-size: 20px;
   color: #878787;
+  cursor: pointer;
+}
+
+.header-iconcart-badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #ff4444;
+  color: #FFFFFF;
+  width: 1em;
+  height: 1em;
+  text-justify: center;
+  border-radius: 50%;
+  padding: 8px 8px;
+  margin: 0px 0px;
+  transform: translate(-4px, -12px);
   cursor: pointer;
 }
 

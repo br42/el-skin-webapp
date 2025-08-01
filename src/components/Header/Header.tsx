@@ -1,22 +1,32 @@
-import "./Header.css";
-import { useState, /*useEffect*/ } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-//import IconeBolsa from "../../assets/bolsa.svg";
-//import IconeLupa from "../../assets/lupa.svg";
-//import Logo from "../../assets/logo.svg";
+import './Header.css';
+import { useCallback, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useCarrinhoContext } from '../../context/CarrinhoContext';
+import Carrinho from '../Carrinho/Carrinho';
 
 function Header () {
   const [textoBusca, setTextoBusca] = useState('');
+  const [isCarrinhoAberto, setIsCarinhoAberto] = useState(false);
   
-  function onClickSearch(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    console.log(`Você pesquisou por: ${textoBusca}`, (event===undefined) ? event : undefined);
-  }
+  const carrinho = useCarrinhoContext();
   
-  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>): void {
+  const handleOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     setTextoBusca(e.target.value);
-  }
+  }, [setTextoBusca]);
+  
+  const onClickSearch = useCallback((event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    console.log(`Você pesquisou por: ${textoBusca}`, (event===undefined) ? event : undefined);
+  }, [textoBusca]);
+  
+  const fecharCarrinho = useCallback(() => {
+    setIsCarinhoAberto(false);
+  }, [setIsCarinhoAberto]);
+  
+  const abrirCarrinho = useCallback(() => {
+    setIsCarinhoAberto(true);
+  }, [setIsCarinhoAberto]);
   
   return (
     <header className="header">
@@ -25,29 +35,22 @@ function Header () {
           <h1 className="header-logo">
             AL SKIN
           </h1>
-          {
-          //<h1 className="Header-logo">
-          //  AL SKIN
-          //</h1>
-          }
-          {
-          //<img alt="AL SKIN" src={Logo} className="header-logo" />
-          }
         </div>
         <div className="header-searchbox">
           <input className="header-searchboxinput" type="text" placeholder="O que você está procurando?" onChange={handleOnChange}>
           </input>
           <button className="header-lupa" onClick={onClickSearch}>
             <FontAwesomeIcon icon={faSearch} />
-            {
-            //<img alt="Pesquisar" src={IconeLupa} className="header-lupa" />
-            }
           </button>
         </div>
-        <div className="header-iconcart">
-          <FontAwesomeIcon icon={faCartShopping} />
-          {
-          //<img alt="IconeBolsa" src={IconeBolsa} />
+        <div className="header-iconcart" onClick={abrirCarrinho} >
+          <FontAwesomeIcon icon={faCartShopping}/>
+          { (carrinho?.getQuantidadeTotalItens() && carrinho?.getQuantidadeTotalItens()!==0) ?
+            <div className="header-iconcart-badge">
+              <span> </span>
+              <span>{carrinho?.getQuantidadeTotalItens()}</span>
+            </div>
+            : undefined
           }
         </div>
       </div>
@@ -71,48 +74,13 @@ function Header () {
           Hits até 50% OFF
         </strong>
       </div>
+      
+      <Carrinho
+        isAberto={isCarrinhoAberto}
+        onClose={fecharCarrinho}
+      />
     </header>
   );
 }
 
 export default Header;
-
-/*
-import React from 'react';
-import './Header.css';
- 
-function Header() {
-  return (
-    <header className="header">
-      <div className="header-top">
-        <div className="container">
-          <div className="logo">
-            <span>AL SKIN</span>
-          </div>
- 
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="O que você está procurando?"
-              className="search-input"/>
-            <button className="search-button">
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
- 
-          <div className="header-actions">
-            <button className="cart-button">
-              <FontAwesomeIcon icon={faCartShopping} />
-            </button>
-          </div>
-        </div>
-      </div>
- 
-      <nav className="header-nav">
-      </nav>
-    </header>
-  );
-}
- 
-export default Header;
-*/

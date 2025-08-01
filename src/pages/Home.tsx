@@ -1,4 +1,3 @@
-import React from 'react';
 import Carousel from '../components/Carousel/Carousel';
 import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
 import './Home.css';
@@ -12,13 +11,7 @@ function Home() {
         <button className="banner-botao-compra"><strong>PRIMEIRA25</strong></button>
       </div>
       <div className="pagina">
-        {
-        //<h1>
-        //  Home!
-        //</h1>
-        }
         <Carousel />
-        
         <ProductShowcase />
       </div>
     </>
