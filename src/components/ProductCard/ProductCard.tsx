@@ -1,24 +1,7 @@
 import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
-import { ReactNode } from 'react';
-
-export type ProductCardTag = {
-  name: string,
-  fgcolor: string | null | undefined,
-  bgcolor: string | null | undefined
-}
-
-export type ProductCardItem = {
-  id: string,
-  name: string,
-  description: string | ReactNode | null | undefined,
-  desconto: string | ReactNode | null | undefined,
-  price: number,
-  tags: ProductCardTag[],
-  image: string,
-  url: string | null | undefined
-};
+import { ProductCardItem, ProductCardTag } from '../../service/productService';
 
 function formatarPreco (preco: number): string {
   return (`R$ ${preco.toFixed(2).replace('.',',')}`);

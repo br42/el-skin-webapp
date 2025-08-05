@@ -1,33 +1,20 @@
 import './Carousel.css';
-//import "../../assets/images";
-import { useState, useEffect, ReactNode, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-
-export interface CarouselImagem {
-  id: number,
-  subtitle: string | ReactNode,
-  title: string | ReactNode,
-  description: string | ReactNode,
-  desconto: string | ReactNode | null | undefined,
-  cupom: string | ReactNode | null | undefined,
-  backgroundImage: string | ReactNode,
-  url: string | null | undefined
-};
+import { CarouselImagem, carouselService,  } from '../../service/carouselService';
 
 function Carousel () {
   const [carouselImage, setCarouselImage] = useState(0);
   const [imagens, setImagens] = useState([] as CarouselImagem[]);
   
   useEffect(() => {
-    axios.get('http://localhost:3001/carousel', {}).then((req) => {
-      setImagens(req.data);
-    });
+    async function obterImagens () {
+      const novasImagens = await carouselService.getCarouselItems();
+      setImagens(novasImagens);
+    }
     
-    return (() => {
-      setImagens([]);
-    });
+    obterImagens();
   },[]);
   
   const nextItem = useCallback(function () {

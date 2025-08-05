@@ -1,11 +1,11 @@
 import ProductCard from '../ProductCard/ProductCard';
 import './ProductShowcase.css';
 import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
-import { ProductCardItem } from '../ProductCard/ProductCard';
+import { ProductCardItem } from '../../service/productService';
 import { useCarrinhoContext } from '../../context/CarrinhoContext';
-// # import { useBuscaContext } from '../../context/BuscaContext';
+import { useBuscaContext } from '../../context/BuscaContext';
 import { CarrinhoItem } from '../../hooks/useCarrinho';
+import { productService } from '../../service/productService';
 
 function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
   return {...item, name: item.name, image: item.image?item.image:'', preco: item.price, url: item.url||'#', quantidade: 1};
@@ -13,19 +13,29 @@ function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
 
 function ProductShowcase () {
   const [produtos, setProdutos] = useState([] as ProductCardItem[]);
-  
-  // # const { busca } = useBuscaContext();
+  const [produtosFiltrados, setProdutosFiltrados] = useState([] as ProductCardItem[]);
+  const { busca } = useBuscaContext();
   const { addItem } = useCarrinhoContext();
   
   useEffect(() => {
-    axios.get('http://localhost:3001/products', {}).then((req) => {
-      setProdutos(req.data);
-    });
+    const obterProdutos = async () => {
+      const produtos = await productService.getProducts();
+      setProdutos(produtos);
+    };
     
-    return (() => {
-      setProdutos([]);
-    });
+    obterProdutos();
   },[]);
+  
+  useEffect(() => {
+    if (busca) {
+      setProdutosFiltrados(produtos.filter(produto =>
+        produto.name.toLowerCase().includes(busca.toLowerCase()) ||
+        produto.description?.toLowerCase().includes(busca.toLowerCase())
+      ));
+    } else {
+      setProdutosFiltrados([...produtos]);
+    }
+  }, [busca, produtos]);
   
   const gerenciaCliqueComprar = useCallback(
     (idProduto: string, event: React.MouseEvent) => {
@@ -57,7 +67,7 @@ function ProductShowcase () {
       <div className="productshowcase-lista-produtos-container">
         <div className="productshowcase-lista-produtos">
           {
-            produtos.map((item) => {
+            produtosFiltrados.map((item) => {
               return <ProductCard key={item.id} id={item.id}
                 product={item}
                 onCliqueComprar={gerenciaCliqueComprar}
