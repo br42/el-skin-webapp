@@ -1,5 +1,5 @@
-import Carousel from '../components/Carousel/Carousel';
-import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
+import Carousel from 'components/Carousel/Carousel';
+import ProductShowcase from 'components/ProductShowcase/ProductShowcase';
 import './Home.css';
 
 function Home() {

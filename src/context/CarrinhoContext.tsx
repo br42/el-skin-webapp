@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from 'react';
-import useCarrinho, { UseCarrinhoType } from '../hooks/useCarrinho';
+import useCarrinho, { UseCarrinhoType } from 'hooks/useCarrinho';
 
 export const CarrinhoContext = createContext<UseCarrinhoType|undefined>(undefined);
 

@@ -1,7 +1,7 @@
 import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
-import { ProductCardItem, ProductCardTag } from '../../service/productService';
+import { ProductCardItem, ProductCardTag } from 'service/productService';
 
 function formatarPreco (preco: number): string {
   return (`R$ ${preco.toFixed(2).replace('.',',')}`);

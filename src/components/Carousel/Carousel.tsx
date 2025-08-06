@@ -2,7 +2,7 @@ import './Carousel.css';
 import { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { CarouselImagem, carouselService,  } from '../../service/carouselService';
+import { CarouselImagem, carouselService,  } from 'service/carouselService';
 
 function Carousel () {
   const [carouselImage, setCarouselImage] = useState(0);

@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { useCarrinhoContext } from '../../context/CarrinhoContext';
-import Carrinho from '../Carrinho/Carrinho';
+import { useCarrinhoContext } from 'context/CarrinhoContext';
+import Carrinho from 'components/Carrinho/Carrinho';
 
 function Header () {
   const [textoBusca, setTextoBusca] = useState('');

@@ -1,7 +1,7 @@
 import './App.css';
-import BuscaContextProvider from './context/BuscaContext';
-import CarrinhoContextProvider from './context/CarrinhoContext';
-import AppRouter from './routes';
+import BuscaContextProvider from 'context/BuscaContext';
+import CarrinhoContextProvider from 'context/CarrinhoContext';
+import AppRouter from 'routes';
 
 function App() {
   return (

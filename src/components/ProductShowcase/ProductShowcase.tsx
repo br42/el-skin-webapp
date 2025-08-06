@@ -1,11 +1,11 @@
-import ProductCard from '../ProductCard/ProductCard';
 import './ProductShowcase.css';
+import ProductCard from 'components/ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
-import { ProductCardItem } from '../../service/productService';
-import { useCarrinhoContext } from '../../context/CarrinhoContext';
-import { useBuscaContext } from '../../context/BuscaContext';
-import { CarrinhoItem } from '../../hooks/useCarrinho';
-import { productService } from '../../service/productService';
+import { ProductCardItem } from 'service/productService';
+import { useCarrinhoContext } from 'context/CarrinhoContext';
+import { useBuscaContext } from 'context/BuscaContext';
+import { CarrinhoItem } from 'hooks/useCarrinho';
+import { productService } from 'service/productService';
 
 function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
   return {...item, name: item.name, image: item.image?item.image:'', preco: item.price, url: item.url||'#', quantidade: 1};

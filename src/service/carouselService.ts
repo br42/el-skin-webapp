@@ -1,5 +1,5 @@
 import api from './api';
-import { API_CONFIG } from '../config/APIConfig';
+import { API_CONFIG } from 'config/APIConfig';
 
 export interface CarouselImagem {
   id: number,

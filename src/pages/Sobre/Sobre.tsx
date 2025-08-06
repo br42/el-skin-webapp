@@ -1,9 +1,9 @@
 import './Sobre.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
-import rightImg from '../assets/images/image 12.png';
-import leftImg from '../assets/images/image 7.png';
-import wideImg from '../assets/images/image 13.png';
+import rightImg from 'assets/images/image 12.png';
+import leftImg from 'assets/images/image 7.png';
+import wideImg from 'assets/images/image 13.png';
 import { Link } from 'react-router-dom';
 
 function Sobre() {

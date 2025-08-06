@@ -1,5 +1,5 @@
 import './Carrinho.css';
-import { useCarrinhoContext } from '../../context/CarrinhoContext';
+import { useCarrinhoContext } from 'context/CarrinhoContext';
 import { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';

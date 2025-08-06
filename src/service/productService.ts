@@ -1,5 +1,5 @@
-import { API_CONFIG } from '../config/APIConfig';
 import api from './api';
+import { API_CONFIG } from 'config/APIConfig';
 
 export type ProductCardTag = {
   name: string,

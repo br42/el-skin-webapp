@@ -1,7 +1,7 @@
 import './FaleConosco.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import rightImg from '../assets/images/image 14.png';
+import rightImg from 'assets/images/image 14.png';
 
 function FaleConosco() {
   return (
