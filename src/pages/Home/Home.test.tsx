@@ -10,8 +10,14 @@ describe('Testando página Home', () => {
     expect(categorias).not.toBeNull();
     expect(categorias).not.toBe(Array);
     expect(categorias).not.toHaveLength(0);
-    //expect(categorias).not.;
     
     //expect(true).toBeTruthy();
   });
 });
+
+const testefn = function* () {
+  yield Symbol();
+};
+
+testefn().next();
+testefn().return();
