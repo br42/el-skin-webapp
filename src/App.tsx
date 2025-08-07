@@ -1,15 +1,23 @@
 import './App.css';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import BuscaContextProvider from 'context/BuscaContext';
 import CarrinhoContextProvider from 'context/CarrinhoContext';
 import AppRouter from 'routes';
 
+const GlobalStyle = createGlobalStyle({});
+
 function App() {
   return (
-    <CarrinhoContextProvider>
-      <BuscaContextProvider>
-        <AppRouter/>
-      </BuscaContextProvider>
-    </CarrinhoContextProvider>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={{}}>
+        <CarrinhoContextProvider>
+          <BuscaContextProvider>
+            <AppRouter/>
+          </BuscaContextProvider>
+        </CarrinhoContextProvider>
+      </ThemeProvider>
+    </>
   );
 }
 
