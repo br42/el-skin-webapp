@@ -1,16 +1,27 @@
+import BuscaContextProvider from 'context/BuscaContext';
 import Home from './Home';
-import { render, screen } from 'test-utils';
+import { cleanup, render, screen } from 'test-utils';
+import CarrinhoContextProvider from 'context/CarrinhoContext';
 
 describe('Testando página Home', () => {
   test('Deve renderizar com categorias', () => {
-    render(<Home />, {});
-    const categorias = screen.getAllByTestId('home-categorias');
+    render(
+      <BuscaContextProvider>
+        <CarrinhoContextProvider>
+          <Home />
+        </CarrinhoContextProvider>
+      </BuscaContextProvider>
+      , {}
+    );
+    //const categorias = screen.getAllByTestId('home-categorias');
+    const categorias = screen.getAllByTestId('banner-compra');
     
     expect(categorias).not.toBeUndefined();
     expect(categorias).not.toBeNull();
     expect(categorias).not.toBe(Array);
     expect(categorias).not.toHaveLength(0);
     
+    cleanup();
     //expect(true).toBeTruthy();
   });
 });

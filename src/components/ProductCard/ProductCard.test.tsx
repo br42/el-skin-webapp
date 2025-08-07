@@ -1,1 +1,1 @@
-export const test = null;
+export const value = test('teste inicial', () => expect(null).not.toBeUndefined());

@@ -3,10 +3,11 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, RenderOptions } from '@testing-library/react';
 import { ReactNode } from 'react';
+import { routerFutureConfig } from 'routes';
 
 const Provedores = ({ children } : { children: ReactNode }) => (
   //<Provider store={store}>
-  <BrowserRouter>
+  <BrowserRouter future={routerFutureConfig}>
     {children}
   </BrowserRouter>
   //</Provider>
