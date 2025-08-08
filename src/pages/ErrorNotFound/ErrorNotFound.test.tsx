@@ -1,9 +1,10 @@
 // # import { cleanup, render, screen } from '@testing-library/react';
 import { cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
-import Sobre from './Sobre';
+import ErrorNotFound from './ErrorNotFound';
 import { Route, Routes } from 'react-router-dom';
 import { act } from 'react';
+import userEvent from '@testing-library/user-event';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
@@ -15,17 +16,20 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate
 }));
 
-describe('Testando página "Sobre"', () => {
+describe('Testando página "Error Not Found"', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  test('Deve renderizar tela "Sobre"', async () => {
+  test('Deve renderizar tela "Error Not Found"', async () => {
     render(await act(() =>
       <Routes>
-        <Route path="*" element={<Sobre />} />
+        <Route path="*" element={<ErrorNotFound />} />
       </Routes>
     ));
-    expect(screen.getByText(/Sobre a AL SKIN/i, {exact: false})).toBeInTheDocument();
+    expect(screen.getByText(/404/i, {exact: false})).toBeInTheDocument();
+    
+    userEvent.click(screen.getByTestId('notfound-botao-voltar'));
+    //expect();
     cleanup();
   });
 });

@@ -9,13 +9,13 @@ function formatarPreco (preco: number): string {
 
 function ProductCard ({ product, id, onCliqueProduto, onCliqueComprar } : { 
   product: ProductCardItem,
-  id: string,
-  onCliqueProduto: (idProduto: string) => void,
-  onCliqueComprar: (idProduto: string, event: React.MouseEvent) => void
+  id: string|number,
+  onCliqueProduto: (idProduto: string|number) => void,
+  onCliqueComprar: (idProduto: string|number, event: React.MouseEvent) => void
 }) {
   
   return ( product &&
-    <div className="productcard" key={id} onClick={() => onCliqueProduto}>
+    <div className="productcard" data-testid="productcard" key={id} onClick={() => onCliqueProduto(id)}>
       {
         <picture className="productcard-picture" title={`${product?.name}`} style={{backgroundImage: `url('${product?.image}')`}}>
         </picture>
@@ -46,6 +46,7 @@ function ProductCard ({ product, id, onCliqueProduto, onCliqueComprar } : {
               <strong>{(product?.price && typeof(product?.price)==='number') && formatarPreco(product?.price)}</strong>
             </span>
             <button className="productcard-button-comprar"
+              data-testid="productcard-button-comprar"
               onClick={(e) => onCliqueComprar(product.id, e)}
             >
               <span><strong>comprar</strong></span>

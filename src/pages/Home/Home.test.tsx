@@ -14,8 +14,11 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate
 }));
 
-describe('Testando página Home', () => {
-  test('Deve renderizar com categorias', async () => {
+describe('Testando página "Home"', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  test('Deve renderizar página "Home" com categorias', async () => {
     render(await act(() =>
       <BuscaContextProvider>
         <CarrinhoContextProvider>

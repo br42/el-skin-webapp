@@ -38,7 +38,7 @@ function ProductShowcase () {
   }, [busca, produtos]);
   
   const gerenciaCliqueComprar = useCallback(
-    (idProduto: string, event: React.MouseEvent) => {
+    (idProduto: string|number, event: React.MouseEvent) => {
       event.stopPropagation();
       console.log(`Comprar produto: ${idProduto}`);
       
@@ -54,8 +54,8 @@ function ProductShowcase () {
   );
   
   const gerenciaCliqueProduto = useCallback(
-    (idProduto: string) => {
-      idProduto.substring(0);
+    (idProduto: string|number) => {
+      String(idProduto).substring(0);
       //console.log(`Produto clicado: ${idProduto}`);
     }, []
   );

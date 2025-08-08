@@ -2,7 +2,7 @@ import { useState, useCallback, useReducer } from 'react';
 
 // # export type LitObject = {[key:string]: unknown};
 export type CarrinhoItem = {
-  id: string,
+  id: string|number,
   name: string,
   quantidade: number,
   preco: number,
@@ -14,8 +14,8 @@ export type CarrinhoItem = {
 export type UseCarrinhoType = {
   itens: CarrinhoItem[],
   addItem: (novoItem: CarrinhoItem) => void,
-  removeItem: (id: string) => void,
-  setQuantidade: (id: string, quantidade: number) => void,
+  removeItem: (id: string|number) => void,
+  setQuantidade: (id: string|number, quantidade: number) => void,
   limparCarrinho: () => void,
   getQuantidadeTotalItens: () => number,
   getPrecoTotal: () => number
@@ -28,7 +28,7 @@ export const CLEAR_CARRINHO = 'CLEAR_CARRINHO';
 
 type CarrinhoState = CarrinhoItem[];
 type CarrinhoReducerActionType = typeof ADD_PRODUTO|typeof REMOVE_PRODUTO|typeof UPDATE_QUANTIDADE|typeof CLEAR_CARRINHO;
-type CarrinhoReducerAction = { type: CarrinhoReducerActionType, payload?: CarrinhoItem|string|number|{id: string, quantidade: number} }
+type CarrinhoReducerAction = { type: CarrinhoReducerActionType, payload?: CarrinhoItem|string|number|{id: string|number, quantidade: number} }
 
 export const carrinhoReducer = (state: CarrinhoState, action: CarrinhoReducerAction) => {
   switch (action.type) {
@@ -83,11 +83,11 @@ export function useCarrinhoCallbacks () : UseCarrinhoType {
     }
   }, [itens]);
   
-  const removeItem = useCallback((id: string) : void => {
+  const removeItem = useCallback((id: string|number) : void => {
     setItens((atuaisItens) => atuaisItens.filter((item) => (item.id !== id)));
   }, [setItens]);
   
-  const setQuantidade = useCallback((id: string, quantidade: number) : void => {
+  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
     if (quantidade <= 0) {
       removeItem(id);
     } else {
@@ -116,11 +116,11 @@ export default function useCarrinhoReduce () : UseCarrinhoType {
     dispatchItens({type: ADD_PRODUTO, payload: novoItem});
   }, [dispatchItens]);
   
-  const removeItem = useCallback((id: string) : void => {
+  const removeItem = useCallback((id: string|number) : void => {
     dispatchItens({type: REMOVE_PRODUTO, payload: id});
   }, [dispatchItens]);
   
-  const setQuantidade = useCallback((id: string, quantidade: number) : void => {
+  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
     dispatchItens({type: UPDATE_QUANTIDADE, payload: {id, quantidade}});
   }, [dispatchItens]);
   

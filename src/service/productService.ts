@@ -8,7 +8,7 @@ export type ProductCardTag = {
 }
 
 export type ProductCardItem = {
-  id: string,
+  id: string|number,
   name: string,
   description?: string,
   desconto?: string,

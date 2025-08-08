@@ -13,7 +13,7 @@ const Provedores = ({ children } : { children: ReactNode }) => (
   //</Provider>
 );
 
-export const renderComProvedores = (ui: ReactNode, options: RenderOptions) =>
+export const renderComProvedores = (ui: ReactNode, options: RenderOptions = {}) =>
   render(ui, {
     wrapper: Provedores,
     ...options,

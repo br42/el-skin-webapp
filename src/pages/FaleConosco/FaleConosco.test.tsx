@@ -1,7 +1,7 @@
 // # import { cleanup, render, screen } from '@testing-library/react';
 import { cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
-import Sobre from './Sobre';
+import FaleConosco from './FaleConosco';
 import { Route, Routes } from 'react-router-dom';
 import { act } from 'react';
 
@@ -15,17 +15,17 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate
 }));
 
-describe('Testando página "Sobre"', () => {
+describe('Testando página "Fale Conosco"', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
-  test('Deve renderizar tela "Sobre"', async () => {
+  test('Deve renderizar tela "Fale Conosco"', async () => {
     render(await act(() =>
       <Routes>
-        <Route path="*" element={<Sobre />} />
+        <Route path="*" element={<FaleConosco />} />
       </Routes>
     ));
-    expect(screen.getByText(/Sobre a AL SKIN/i, {exact: false})).toBeInTheDocument();
+    expect(screen.getByText(/Fale Conosco/i, {exact: false})).toBeInTheDocument();
     cleanup();
   });
 });

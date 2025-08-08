@@ -8,7 +8,7 @@ function formatarPreco (preco: number): string {
   return (`R$ ${preco.toFixed(2).replace('.',',')}`);
 }
 
-function Carrinho ({ isAberto, onClose } : { isAberto: boolean, onClose: () => void }) {
+function Carrinho ({ isAberto, onClose, 'data-testid': dataTestid } : { isAberto: boolean, onClose: () => void, 'data-testid'?: string }) {
   const carrinho = useCarrinhoContext();
   const { itens, getPrecoTotal, setQuantidade, removeItem } = carrinho;
   
@@ -25,19 +25,20 @@ function Carrinho ({ isAberto, onClose } : { isAberto: boolean, onClose: () => v
   }, [onClose]);
   
   if (!isAberto) {
-    return null;
+    return <div style={{display: 'none'}} data-testid={dataTestid} tabIndex={-1} />;
   }
   
   return (
     <div className="carrinho-modal-overlay"
       onClick={recebeuClique}
       onKeyDown={recebeuApertoTecla}
+      data-testid={dataTestid}
       tabIndex={-1}
     >
       <div className="carrinho-modal">
         <div className="carrinho-modal-header">
           <h2 className="carrinho-modal-header-titulo">Carrinho</h2>
-          <button className="carrinho-modal-header-botao-fechar" onClick={onClose}>
+          <button className="carrinho-modal-header-botao-fechar" data-testid="carrinho-modal-fechar" onClick={onClose}>
             <FontAwesomeIcon icon={faClose} />
           </button>
         </div>
