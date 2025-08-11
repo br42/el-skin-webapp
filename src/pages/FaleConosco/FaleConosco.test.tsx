@@ -1,9 +1,6 @@
-// # import { cleanup, render, screen } from '@testing-library/react';
-import { cleanup, render, screen } from 'test-utils';
+import { act, cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
 import FaleConosco from './FaleConosco';
-import { Route, Routes } from 'react-router-dom';
-import { act } from 'react';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
@@ -21,9 +18,7 @@ describe('Testando página "Fale Conosco"', () => {
   });
   test('Deve renderizar tela "Fale Conosco"', async () => {
     render(await act(() =>
-      <Routes>
-        <Route path="*" element={<FaleConosco />} />
-      </Routes>
+      <FaleConosco />
     ));
     expect(screen.getByText(/Fale Conosco/i, {exact: false})).toBeInTheDocument();
     cleanup();

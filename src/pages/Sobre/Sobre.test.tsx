@@ -1,9 +1,6 @@
-// # import { cleanup, render, screen } from '@testing-library/react';
-import { cleanup, render, screen } from 'test-utils';
+import { act, cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
 import Sobre from './Sobre';
-import { Route, Routes } from 'react-router-dom';
-import { act } from 'react';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
@@ -21,9 +18,7 @@ describe('Testando página "Sobre"', () => {
   });
   test('Deve renderizar tela "Sobre"', async () => {
     render(await act(() =>
-      <Routes>
-        <Route path="*" element={<Sobre />} />
-      </Routes>
+      <Sobre />
     ));
     expect(screen.getByText(/Sobre a AL SKIN/i, {exact: false})).toBeInTheDocument();
     cleanup();

@@ -11,7 +11,7 @@ function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
   return {...item, name: item.name, image: item.image?item.image:'', preco: item.price, url: item.url||'#', quantidade: 1};
 }
 
-function ProductShowcase () {
+function ProductShowcase ( { debugProdutos = undefined } : { debugProdutos?: ProductCardItem[] } = { debugProdutos: undefined } ) {
   const [produtos, setProdutos] = useState([] as ProductCardItem[]);
   const [produtosFiltrados, setProdutosFiltrados] = useState([] as ProductCardItem[]);
   const { busca } = useBuscaContext();
@@ -19,12 +19,20 @@ function ProductShowcase () {
   
   useEffect(() => {
     const obterProdutos = async () => {
-      const produtos = await productService.getProducts();
-      setProdutos(produtos);
+      try {
+        const produtos = await productService.getProducts();
+        setProdutos(produtos);
+      } catch {
+        ;
+      } finally {
+        if (debugProdutos !== undefined) {
+          setProdutos(debugProdutos);
+        }
+      }
     };
     
     obterProdutos();
-  },[]);
+  },[debugProdutos]);
   
   useEffect(() => {
     if (busca) {

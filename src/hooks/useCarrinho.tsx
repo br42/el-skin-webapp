@@ -32,44 +32,44 @@ type CarrinhoReducerAction = { type: CarrinhoReducerActionType, payload?: Carrin
 
 export const carrinhoReducer = (state: CarrinhoState, action: CarrinhoReducerAction) => {
   switch (action.type) {
-  case ADD_PRODUTO: {
-    if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+    case ADD_PRODUTO: {
+      if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const novoProduto = action.payload as CarrinhoItem;
+      const produto = state.findIndex((item) => item.id === novoProduto.id);
+      if (produto === -1) {
+        novoProduto.quantidade = 1;
+        return [...state, novoProduto];
+      } else {
+        return state.map((item, index) =>
+          index === produto
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        );
+      }
     }
-    const novoProduto = action.payload as CarrinhoItem;
-    const produto = state.findIndex((item) => item.id === novoProduto.id);
-    if (produto === -1) {
-      novoProduto.quantidade = 1;
-      return [...state, novoProduto];
-    } else {
-      return state.map((item, index) =>
-        index === produto
-          ? { ...item, quantidade: item.quantidade + 1 }
-          : item
+    case REMOVE_PRODUTO: {
+      if (!action.payload || (typeof(action.payload)!=='string' && typeof(action.payload)!=='number')) {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const produtoId = action.payload;
+      return state.filter((item) => item.id !== produtoId);
+    }
+    case UPDATE_QUANTIDADE: {
+      if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const { id, quantidade } = action.payload;
+      return state.map((item) =>
+        item.id === id ? { ...item, quantidade } : item
       );
     }
-  }
-  case REMOVE_PRODUTO: {
-    if (!action.payload || (typeof(action.payload)!=='string' && typeof(action.payload)!=='number')) {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+    case CLEAR_CARRINHO: {
+      return [];
     }
-    const produtoId = action.payload;
-    return state.filter((item) => item.id !== produtoId);
-  }
-  case UPDATE_QUANTIDADE: {
-    if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
-    }
-    const { id, quantidade } = action.payload;
-    return state.map((item) =>
-      item.id === id ? { ...item, quantidade } : item
-    );
-  }
-  case CLEAR_CARRINHO: {
-    return [];
-  }
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 

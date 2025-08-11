@@ -65,6 +65,7 @@ function Carrinho ({ isAberto, onClose, 'data-testid': dataTestid } : { isAberto
                           <div className="carrinho-quantidade-controles">
                             <button title="-"
                               className="carrinho-quantidade-button" 
+                              data-testid="carrinho-quantidade-button-plus" 
                               onClick={
                                 ()=>setQuantidade(item.id, (item.quantidade < 2) ? 1 : item.quantidade-1)
                               }
@@ -74,6 +75,7 @@ function Carrinho ({ isAberto, onClose, 'data-testid': dataTestid } : { isAberto
                             <span className="carrinho-quantidade-valor">{item.quantidade}</span>
                             <button title="+"
                               className="carrinho-quantidade-button" 
+                              data-testid="carrinho-quantidade-button-minus" 
                               onClick={
                                 ()=>setQuantidade(item.id, item.quantidade+1)
                               }
@@ -84,6 +86,7 @@ function Carrinho ({ isAberto, onClose, 'data-testid': dataTestid } : { isAberto
                           
                           <button title="Remover item"
                             className="carrinho-remover-button"
+                            data-testid="carrinho-remover-button" 
                             onClick={() => removeItem(item.id)}
                           >
                             <FontAwesomeIcon icon={faTrash} />

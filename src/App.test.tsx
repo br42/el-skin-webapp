@@ -1,5 +1,5 @@
-import React, { act } from 'react';
-import { cleanup, render, screen } from '@testing-library/react';
+import React from 'react';
+import { act, cleanup, render, screen } from '@testing-library/react';
 import App from './App';
 
 // # import { useNavigate } from 'react-router';

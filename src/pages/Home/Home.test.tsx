@@ -1,8 +1,5 @@
-import BuscaContextProvider from 'context/BuscaContext';
+import { act, cleanup, render, screen } from 'test-utils';
 import Home from './Home';
-import { cleanup, render, screen } from 'test-utils';
-import CarrinhoContextProvider from 'context/CarrinhoContext';
-import { act } from 'react';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
@@ -20,11 +17,7 @@ describe('Testando página "Home"', () => {
   });
   test('Deve renderizar página "Home" com categorias', async () => {
     render(await act(() =>
-      <BuscaContextProvider>
-        <CarrinhoContextProvider>
-          <Home />
-        </CarrinhoContextProvider>
-      </BuscaContextProvider>
+      <Home />
     ), {}
     );
     //const categorias = screen.getAllByTestId('home-categorias');
@@ -39,10 +32,3 @@ describe('Testando página "Home"', () => {
     //expect(true).toBeTruthy();
   });
 });
-
-const testefn = function* () {
-  yield Symbol();
-};
-
-testefn().next();
-testefn().return();

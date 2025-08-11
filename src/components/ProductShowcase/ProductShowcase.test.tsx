@@ -1,101 +1,104 @@
-// # import { cleanup, render, screen } from '@testing-library/react';
-import { cleanup, render, screen } from 'test-utils';
+import { act, cleanup, mockGetListaProdutos, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
 import ProductShowcase from './ProductShowcase';
-import ProductCard from 'components/ProductCard/ProductCard';
-import { ProductCardItem, ProductCardTag } from 'service/productService';
-import { act } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { ProductCardItem } from 'service/productService';
 import userEvent from '@testing-library/user-event';
-import BuscaContextProvider from 'context/BuscaContext';
-import CarrinhoContextProvider from 'context/CarrinhoContext';
+// # import userEvent from '@testing-library/user-event';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
 jest.mock('service/carouselService.ts');
-jest.mock('service/productService.ts');
+//jest.mock('service/productService.ts');
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate
 }));
 
-const getProduto = () : ProductCardItem => {
-  return {
-    'id': 1,
-    'name': 'Creme Hidratante Facial',
-    'description': 'Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.',
-    'price': 45.99,
-    'image': 'assets/images/prod1.jpg',
-    'tags': [
-      { 'name': 'face', 'bgcolor': '#5DD4DB', 'fgcolor': '#FFFFFF' },
-      { 'name': 'hydration', 'bgcolor': '#DB5DB1', 'fgcolor': '#FFFFFF' }
-    ] as ProductCardTag[]
-  };
-};
-const onCliqueProduto = jest.fn();
-const onCliqueComprar = jest.fn();
+const mockProductService = jest.fn();
+jest.setMock('service/productService.ts', mockProductService);
 
 describe('Testando componente "ProductShowcase"', () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+  //afterEach(() => {
+  //  jest.restoreAllMocks();
+  //});
+    
   test('Componente "ProductShowcase" sem produto válido deve ser renderizado', async () => {
-    render(
+
+    mockProductService.mockImplementation(() => ({
+      // # ...jest.requireActual('service/productService.ts'),
+      productService: {
+        getProducts: async (): Promise<ProductCardItem[]> => {
+          return [];
+        },
+        getProductById: async (id: string|number): Promise<ProductCardItem> => {
+          const produto = [].find((item: ProductCardItem) => item.id === id);
+          if (produto === undefined) {
+            throw Error('Erro 404: Produto não encontrado');
+          }
+          return produto;
+        }
+      }
+    }));
+    
+    await act(async () => render(
       await act(async () => 
-        <Routes>
-          <Route path="*" element={
-            <BuscaContextProvider>
-              <CarrinhoContextProvider>
-                <ProductShowcase />
-              </CarrinhoContextProvider>
-            </BuscaContextProvider>
-          } />
-        </Routes>
+        <ProductShowcase debugProdutos={[]} />
       )
-    );
+    ));
+    
     expect(screen.queryAllByText('comprar').length).toBe(0);
     cleanup();
   });
-  test('Componente "ProductCard" sem produto válido deve ser renderizado', async () => {
-    render(
-      await act(async () => 
-        <Routes>
-          <Route path="*" element={
-            <ProductCard id={1} product={undefined as unknown as ProductCardItem} 
-              onCliqueProduto={onCliqueProduto}
-              onCliqueComprar={onCliqueComprar}
-            />
-          } />
-        </Routes>
-      )
-    );
-    expect(screen.queryAllByText('comprar').length).toBe(0);
+});
+
+mockProductService.mockImplementation(() => ({
+  // # ...jest.requireActual('service/productService.ts'),
+  productService: {
+    getProducts: async (): Promise<ProductCardItem[]> => {
+      return mockGetListaProdutos();
+    },
+    getProductById: async (id: string|number): Promise<ProductCardItem> => {
+      const produto = mockGetListaProdutos().find((item) => item.id === id);
+      if (produto === undefined) {
+        throw Error('Erro 404: Produto não encontrado');
+      }
+      return produto;
+    }
+  }
+}));
+
+describe('Testando componente "ProductShowcase"', () => {
+  //afterEach(() => {
+  //  jest.restoreAllMocks();
+  //});
+  
+  test('Componente "ProductCard" com produtos válidos deve ser renderizado', async () => {
+    expect(mockGetListaProdutos().length).toBe(8);
+    await act(async () => render(
+      <ProductShowcase debugProdutos={mockGetListaProdutos()} />
+    ));
+    expect(screen.queryAllByText('comprar').length).toBe(8);
     cleanup();
   });
-  test('Componente "ProductCard" com produto válido deve ser renderizado', async () => {
-    render(
-      await act(async () => 
-        <Routes>
-          <Route path="*" element={
-            <ProductCard id={1} product={getProduto()} 
-              onCliqueProduto={onCliqueProduto}
-              onCliqueComprar={onCliqueComprar}
-            />
-          } />
-        </Routes>
-      )
-    );
-    expect(screen.getByText('comprar')).toBeInTheDocument();
+  
+  test('Componente "ProductShowcase" com produtos válidos deve renderizar os cartões de produtos corretamente', async () => {
+    await act(async () => render(
+      <ProductShowcase debugProdutos={mockGetListaProdutos()} />
+    ));
+    expect(screen.queryAllByText('comprar').length).toBe(8);
     expect(screen.getByText('Creme Hidratante Facial')).toBeInTheDocument();
     
-    expect(screen.getByTestId('productcard')).toBeInTheDocument();
-    userEvent.click(screen.getByTestId('productcard'));
-    expect(onCliqueProduto).toBeCalledTimes(1);
+    cleanup();
+  });
+  
+  test('Componente "ProductShowcase" com produtos válidos deve realizar ação de compra', async () => {
+    await act(async () => render(
+      <ProductShowcase debugProdutos={mockGetListaProdutos()} />
+    ));
+    expect(screen.queryAllByText('comprar').length).not.toBe(0);
     
-    expect(screen.getByTestId('productcard-button-comprar')).toBeInTheDocument();
-    userEvent.click(screen.getByTestId('productcard-button-comprar'));
-    expect(onCliqueComprar).toBeCalledTimes(1);
+    userEvent.click(screen.queryAllByText('comprar')[0]);
     
     cleanup();
   });

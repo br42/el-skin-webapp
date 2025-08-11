@@ -24,7 +24,7 @@ export const productService = {
     return response.data;
   },
   
-  async getProductById(id: string): Promise<ProductCardItem> {
+  async getProductById(id: string|number): Promise<ProductCardItem> {
     const response = await api.get<ProductCardItem>(`${API_CONFIG.ENDPOINTS.PRODUCTS}/${id}`);
     return response.data;
   }

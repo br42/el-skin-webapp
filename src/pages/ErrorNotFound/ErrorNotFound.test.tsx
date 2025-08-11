@@ -1,10 +1,7 @@
-// # import { cleanup, render, screen } from '@testing-library/react';
-import { cleanup, render, screen } from 'test-utils';
+import { act, cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
-import ErrorNotFound from './ErrorNotFound';
-import { Route, Routes } from 'react-router-dom';
-import { act } from 'react';
 import userEvent from '@testing-library/user-event';
+import ErrorNotFound from './ErrorNotFound';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
@@ -22,9 +19,7 @@ describe('Testando página "Error Not Found"', () => {
   });
   test('Deve renderizar tela "Error Not Found"', async () => {
     render(await act(() =>
-      <Routes>
-        <Route path="*" element={<ErrorNotFound />} />
-      </Routes>
+      <ErrorNotFound />
     ));
     expect(screen.getByText(/404/i, {exact: false})).toBeInTheDocument();
     

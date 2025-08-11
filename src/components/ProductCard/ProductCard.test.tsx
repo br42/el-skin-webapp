@@ -1,10 +1,7 @@
-// # import { cleanup, render, screen } from '@testing-library/react';
-import { cleanup, render, screen } from 'test-utils';
+import { act, cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
 import ProductCard from './ProductCard';
 import { ProductCardItem, ProductCardTag } from 'service/productService';
-import { act } from 'react';
-import { Route, Routes } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
 // # import { useNavigate } from 'react-router';
@@ -40,14 +37,10 @@ describe('Testando componente "ProductCard"', () => {
   test('Componente "ProductCard" sem produto válido deve ser renderizado', async () => {
     render(
       await act(async () => 
-        <Routes>
-          <Route path="*" element={
-            <ProductCard id={1} product={undefined as unknown as ProductCardItem} 
-              onCliqueProduto={onCliqueProduto}
-              onCliqueComprar={onCliqueComprar}
-            />
-          } />
-        </Routes>
+        <ProductCard id={1} product={undefined as unknown as ProductCardItem} 
+          onCliqueProduto={onCliqueProduto}
+          onCliqueComprar={onCliqueComprar}
+        />
       )
     );
     expect(screen.queryAllByText('comprar').length).toBe(0);
@@ -56,14 +49,10 @@ describe('Testando componente "ProductCard"', () => {
   test('Componente "ProductCard" com produto válido deve ser renderizado', async () => {
     render(
       await act(async () => 
-        <Routes>
-          <Route path="*" element={
-            <ProductCard id={1} product={getProduto()} 
-              onCliqueProduto={onCliqueProduto}
-              onCliqueComprar={onCliqueComprar}
-            />
-          } />
-        </Routes>
+        <ProductCard id={1} product={getProduto()} 
+          onCliqueProduto={onCliqueProduto}
+          onCliqueComprar={onCliqueComprar}
+        />
       )
     );
     expect(screen.getByText('comprar')).toBeInTheDocument();

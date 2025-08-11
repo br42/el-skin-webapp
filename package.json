@@ -55,6 +55,7 @@
     ]
   },
   "jest": {
+    "resetMocks": false,
     "moduleNameMapper": {
       "axios": "axios/dist/axios.min.js"
     }
