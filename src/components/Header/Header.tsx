@@ -17,7 +17,7 @@ function Header () {
   }, [setTextoBusca]);
   
   const onClickSearch = useCallback((event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
-    console.log(`Você pesquisou por: ${textoBusca}`, (event===undefined) ? event : undefined);
+    console.log(`Você pesquisou por: "${textoBusca}"${(event?.type==='') ? event : ''}`);
   }, [textoBusca]);
   
   const fecharCarrinho = useCallback(() => {
@@ -37,13 +37,13 @@ function Header () {
           </h1>
         </div>
         <div className="header-searchbox">
-          <input className="header-searchboxinput" type="text" placeholder="O que você está procurando?" onChange={handleOnChange}>
+          <input className="header-searchboxinput" data-testid="header-searchboxinput" type="text" placeholder="O que você está procurando?" onChange={handleOnChange}>
           </input>
-          <button className="header-lupa" onClick={onClickSearch}>
+          <button className="header-lupa" data-testid="header-lupa" onClick={onClickSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
-        <div className="header-iconcart" onClick={abrirCarrinho} >
+        <div className="header-iconcart"  data-testid="header-iconcart" onClick={abrirCarrinho} >
           <FontAwesomeIcon icon={faCartShopping}/>
           { (carrinho?.getQuantidadeTotalItens() && carrinho?.getQuantidadeTotalItens()!==0) ?
             <div className="header-iconcart-badge">
@@ -76,6 +76,7 @@ function Header () {
       </div>
       
       <Carrinho
+        data-testid="carrinho-modal"
         isAberto={isCarrinhoAberto}
         onClose={fecharCarrinho}
       />

@@ -6,9 +6,18 @@ import FaleConosco from 'pages/FaleConosco/FaleConosco';
 import ErrorNotFound from 'pages/ErrorNotFound/ErrorNotFound';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+export const routerFutureConfig = {
+  v7_relativeSplatPath: true,
+  v7_startTransition: true,
+  v7_fetcherPersist: true,
+  v7_normalizeFormMethod: true,
+  v7_partialHydration: true,
+  v7_skipActionErrorRevalidation: true,
+};
+
 export default function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={routerFutureConfig}>
       <div className="AppRouter">
         <Header/>
         <Routes>

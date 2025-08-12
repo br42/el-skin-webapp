@@ -37,10 +37,10 @@ function Carousel () {
   
   return (
     <div className="carousel">
-      <button className="carousel-button carousel-button-left" onClick={previousItem}>
+      <button className="carousel-button carousel-button-left" data-testid="carousel-button-left" onClick={previousItem}>
         <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
       </button>
-      <button className="carousel-button carousel-button-right" onClick={nextItem}>
+      <button className="carousel-button carousel-button-right" data-testid="carousel-button-right" onClick={nextItem}>
         <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
       </button>
       <picture className="carrousel-image" style={{backgroundImage: `url('${imagens[carouselImage]?.backgroundImage}')`}} title={`${imagens[carouselImage]?.title}`} >
