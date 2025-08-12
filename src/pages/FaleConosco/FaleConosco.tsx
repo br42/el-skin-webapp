@@ -34,26 +34,26 @@ function FaleConosco() {
                   <legend>Categoria:</legend>
                 
                   <div>
-                    <input type="checkbox" id="contato-categoria-duvidas" /><>
+                    <input type="checkbox" id="contato-categoria-duvidas" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-duvidas">Dúvidas</label>
-                    </>
-                    <input type="checkbox" id="contato-categoria-problemapedido" /><>
+                    </span>
+                    <input type="checkbox" id="contato-categoria-problemapedido" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-problemapedido">Problema com pedido</label>
-                    </>
-                    <input type="checkbox" id="contato-categoria-reclamacao" /><>
+                    </span>
+                    <input type="checkbox" id="contato-categoria-reclamacao" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-reclamacao">Reclamação</label>
-                    </>
+                    </span>
                   </div>
                   <div>
-                    <input type="checkbox" id="contato-categoria-sugestao" /><>
+                    <input type="checkbox" id="contato-categoria-sugestao" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-sugestao">Sugestão</label>
-                    </>
-                    <input type="checkbox" id="contato-categoria-elogios" /><>
+                    </span>
+                    <input type="checkbox" id="contato-categoria-elogios" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-elogios">Elogios</label>
-                    </>
-                    <input type="checkbox" id="contato-categoria-outro" /><>
+                    </span>
+                    <input type="checkbox" id="contato-categoria-outro" /><span className="contato-label-container">
                       <label htmlFor="contato-categoria-outro">Outro</label>
-                    </>
+                    </span>
                   </div>
                 </>
               //</fieldset>
@@ -79,7 +79,7 @@ function FaleConosco() {
           <p></p>
         </div>
         <div className="faleconosco-container-right">
-          <img alt="" className="sobre-img-float-right float-right" src={rightImg} />
+          <img alt="" className="faleconosco-imagem-preencher" src={rightImg} />
         </div>
       </div>
       

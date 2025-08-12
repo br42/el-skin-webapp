@@ -30,11 +30,11 @@ function Sobre() {
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
           </p>
         
-          <img alt="" className="sobre-img-float-left float-left" src={leftImg} />
+          <img alt="" className="sobre-imagem-preencher" src={leftImg} />
         </div>
         
         <div className="sobre-container-right">
-          <img alt="" className="sobre-img-float-right float-right" src={rightImg} />
+          <img alt="" className="sobre-imagem-preencher" src={rightImg} />
           
           <p>
             VAMOS CONVERSAR?
@@ -55,7 +55,7 @@ function Sobre() {
         </div>
       </div>
       <div className="sobre-container-bottom">
-        <img alt="" className="sobre-img-fill-width" src={wideImg} />
+        <img alt="" className="sobre-imagem-preencher" src={wideImg} />
       </div>
     </div>
   );
