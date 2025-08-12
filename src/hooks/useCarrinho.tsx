@@ -2,7 +2,7 @@ import { useState, useCallback, useReducer } from 'react';
 
 // # export type LitObject = {[key:string]: unknown};
 export type CarrinhoItem = {
-  id: string,
+  id: string|number,
   name: string,
   quantidade: number,
   preco: number,
@@ -14,8 +14,8 @@ export type CarrinhoItem = {
 export type UseCarrinhoType = {
   itens: CarrinhoItem[],
   addItem: (novoItem: CarrinhoItem) => void,
-  removeItem: (id: string) => void,
-  setQuantidade: (id: string, quantidade: number) => void,
+  removeItem: (id: string|number) => void,
+  setQuantidade: (id: string|number, quantidade: number) => void,
   limparCarrinho: () => void,
   getQuantidadeTotalItens: () => number,
   getPrecoTotal: () => number
@@ -28,48 +28,48 @@ export const CLEAR_CARRINHO = 'CLEAR_CARRINHO';
 
 type CarrinhoState = CarrinhoItem[];
 type CarrinhoReducerActionType = typeof ADD_PRODUTO|typeof REMOVE_PRODUTO|typeof UPDATE_QUANTIDADE|typeof CLEAR_CARRINHO;
-type CarrinhoReducerAction = { type: CarrinhoReducerActionType, payload?: CarrinhoItem|string|number|{id: string, quantidade: number} }
+type CarrinhoReducerAction = { type: CarrinhoReducerActionType, payload?: CarrinhoItem|string|number|{id: string|number, quantidade: number} }
 
 export const carrinhoReducer = (state: CarrinhoState, action: CarrinhoReducerAction) => {
   switch (action.type) {
-  case ADD_PRODUTO: {
-    if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+    case ADD_PRODUTO: {
+      if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const novoProduto = action.payload as CarrinhoItem;
+      const produto = state.findIndex((item) => item.id === novoProduto.id);
+      if (produto === -1) {
+        novoProduto.quantidade = 1;
+        return [...state, novoProduto];
+      } else {
+        return state.map((item, index) =>
+          index === produto
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        );
+      }
     }
-    const novoProduto = action.payload as CarrinhoItem;
-    const produto = state.findIndex((item) => item.id === novoProduto.id);
-    if (produto === -1) {
-      novoProduto.quantidade = 1;
-      return [...state, novoProduto];
-    } else {
-      return state.map((item, index) =>
-        index === produto
-          ? { ...item, quantidade: item.quantidade + 1 }
-          : item
+    case REMOVE_PRODUTO: {
+      if (!action.payload || (typeof(action.payload)!=='string' && typeof(action.payload)!=='number')) {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const produtoId = action.payload;
+      return state.filter((item) => item.id !== produtoId);
+    }
+    case UPDATE_QUANTIDADE: {
+      if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
+        throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+      }
+      const { id, quantidade } = action.payload;
+      return state.map((item) =>
+        item.id === id ? { ...item, quantidade } : item
       );
     }
-  }
-  case REMOVE_PRODUTO: {
-    if (!action.payload || (typeof(action.payload)!=='string' && typeof(action.payload)!=='number')) {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
+    case CLEAR_CARRINHO: {
+      return [];
     }
-    const produtoId = action.payload;
-    return state.filter((item) => item.id !== produtoId);
-  }
-  case UPDATE_QUANTIDADE: {
-    if (!action.payload || typeof(action.payload)==='string' || typeof(action.payload)==='number') {
-      throw new Error(`Erro: carrinhoReducer: action.payload da action ${action.type} está vazio ou com tipo incorreto! Tipo: "${typeof action.payload}"`);
-    }
-    const { id, quantidade } = action.payload;
-    return state.map((item) =>
-      item.id === id ? { ...item, quantidade } : item
-    );
-  }
-  case CLEAR_CARRINHO: {
-    return [];
-  }
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 
@@ -83,11 +83,11 @@ export function useCarrinhoCallbacks () : UseCarrinhoType {
     }
   }, [itens]);
   
-  const removeItem = useCallback((id: string) : void => {
+  const removeItem = useCallback((id: string|number) : void => {
     setItens((atuaisItens) => atuaisItens.filter((item) => (item.id !== id)));
   }, [setItens]);
   
-  const setQuantidade = useCallback((id: string, quantidade: number) : void => {
+  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
     if (quantidade <= 0) {
       removeItem(id);
     } else {
@@ -116,11 +116,11 @@ export default function useCarrinhoReduce () : UseCarrinhoType {
     dispatchItens({type: ADD_PRODUTO, payload: novoItem});
   }, [dispatchItens]);
   
-  const removeItem = useCallback((id: string) : void => {
+  const removeItem = useCallback((id: string|number) : void => {
     dispatchItens({type: REMOVE_PRODUTO, payload: id});
   }, [dispatchItens]);
   
-  const setQuantidade = useCallback((id: string, quantidade: number) : void => {
+  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
     dispatchItens({type: UPDATE_QUANTIDADE, payload: {id, quantidade}});
   }, [dispatchItens]);
   

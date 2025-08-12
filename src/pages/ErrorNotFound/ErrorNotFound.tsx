@@ -16,7 +16,7 @@ function ErrorNotFound() {
         Não foi possível encontrar a página requisitada na URL &quot;/{urlpath}&quot;.
       </p>
       <div className="center">
-        <button onClick={()=>navigate(-1)}>
+        <button data-testid="notfound-botao-voltar" onClick={()=>navigate(-1)}>
           <FontAwesomeIcon icon={faArrowLeft} />
           <span>Voltar</span>
         </button>
