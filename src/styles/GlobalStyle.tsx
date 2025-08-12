@@ -3,8 +3,6 @@ import 'fonts.css';
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-@import 'fonts.css';
-
 html, body {
   font-family: 'Poppins', 'Century Gothic', 'Futura', 'Segoe UI', 'Geneva', sans-serif;
   min-height: 100vh;
