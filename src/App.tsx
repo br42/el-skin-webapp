@@ -1,16 +1,17 @@
-import './App.css';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+// # import './App.css';
+import { ThemeProvider } from 'styled-components';
 import BuscaContextProvider from 'context/BuscaContext';
 import CarrinhoContextProvider from 'context/CarrinhoContext';
 import AppRouter from 'routes';
-
-const GlobalStyle = createGlobalStyle({});
+// # import 'styles/normalize.css';
+import { GlobalStyle } from 'styles/GlobalStyle';
+import { theme } from './styles/theme';
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <ThemeProvider theme={{}}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <CarrinhoContextProvider>
           <BuscaContextProvider>
             <AppRouter/>
