@@ -1,16 +1,46 @@
-import './Sobre.css';
+// # import './Sobre.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import rightImg from 'assets/images/image 12.png';
 import leftImg from 'assets/images/image 7.png';
 import wideImg from 'assets/images/image 13.png';
 import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { Pagina } from 'styles/GlobalStyle';
+
+const SobreContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 8px;
+`;
+
+const SobreContainerLeft = styled.div`
+  width: 50%;
+`;
+
+const SobreContainerRight = styled.div`
+  width: 50%;
+`;
+
+const SobreContainerBottom = styled.div`
+  width: 100%;
+`;
+
+const ImagemPreencher = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+`;
 
 function Sobre() {
   return (
-    <div className="pagina">
-      <div className="sobre-container">
-        <div className="sobre-container-left">
+    <Pagina>
+      <SobreContainer>
+        <SobreContainerLeft>
           <h1>
             Sobre a AL SKIN
           </h1>
@@ -30,11 +60,11 @@ function Sobre() {
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
           </p>
         
-          <img alt="" className="sobre-imagem-preencher" src={leftImg} />
-        </div>
+          <ImagemPreencher src={leftImg} />
+        </SobreContainerLeft>
         
-        <div className="sobre-container-right">
-          <img alt="" className="sobre-imagem-preencher" src={rightImg} />
+        <SobreContainerRight>
+          <ImagemPreencher src={rightImg} />
           
           <p>
             VAMOS CONVERSAR?
@@ -44,7 +74,7 @@ function Sobre() {
           
           <p>
             <Link to="/faleconosco">
-              <button className="button-contact">
+              <button /*className="button-contact"*/>
                 <FontAwesomeIcon icon={faComment} />
                 <span>
                   Fale conosco
@@ -52,12 +82,12 @@ function Sobre() {
               </button>
             </Link>
           </p>
-        </div>
-      </div>
-      <div className="sobre-container-bottom">
-        <img alt="" className="sobre-imagem-preencher" src={wideImg} />
-      </div>
-    </div>
+        </SobreContainerRight>
+      </SobreContainer>
+      <SobreContainerBottom>
+        <ImagemPreencher src={wideImg} />
+      </SobreContainerBottom>
+    </Pagina>
   );
 }
 

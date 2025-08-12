@@ -1,4 +1,4 @@
-import './ProductShowcase.css';
+// # import './ProductShowcase.css';
 import ProductCard from 'components/ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { ProductCardItem } from 'service/productService';
@@ -6,6 +6,41 @@ import { useCarrinhoContext } from 'context/CarrinhoContext';
 import { useBuscaContext } from 'context/BuscaContext';
 import { CarrinhoItem } from 'hooks/useCarrinho';
 import { productService } from 'service/productService';
+import { styled } from 'styled-components';
+
+const ProductShowcaseMain = styled.div`
+  display: block;
+  width: 100%;
+  max-width: 100dvw;
+  justify-items: center;
+`;
+
+const ProductShowcaseListaProdutosContainer = styled.div`
+  align-items: center;
+  justify-items: center;
+`;
+
+const ProductShowcaseListaProdutos = styled.div`
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: minmax(128px, auto);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  justify-self: center;
+  row-gap: 32px;
+  column-gap: 16px;
+  align-items: center;
+  justify-items: center;
+`;
+
+const ProductShowcaseTitulo = styled.h3`
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+`;
 
 function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
   return {...item, name: item.name, image: item.image?item.image:'', preco: item.price, url: item.url||'#', quantidade: 1};
@@ -69,11 +104,11 @@ function ProductShowcase ( { debugProdutos = undefined } : { debugProdutos?: Pro
   );
   
   return (
-    <div className="productshowcase">
-      <h3 className="center">nossos queridinhos estão aqui</h3>
+    <ProductShowcaseMain>
+      <ProductShowcaseTitulo>nossos queridinhos estão aqui</ProductShowcaseTitulo>
       
-      <div className="productshowcase-lista-produtos-container">
-        <div className="productshowcase-lista-produtos">
+      <ProductShowcaseListaProdutosContainer>
+        <ProductShowcaseListaProdutos>
           {
             produtosFiltrados.map((item) => {
               return <ProductCard key={item.id} id={item.id}
@@ -83,9 +118,9 @@ function ProductShowcase ( { debugProdutos = undefined } : { debugProdutos?: Pro
               />;
             })
           }
-        </div>
-      </div>
-    </div>
+        </ProductShowcaseListaProdutos>
+      </ProductShowcaseListaProdutosContainer>
+    </ProductShowcaseMain>
   );
 }
 

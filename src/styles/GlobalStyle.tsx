@@ -1,6 +1,6 @@
 import 'normalize.css';
 import 'fonts.css';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 @import 'fonts.css';
@@ -107,6 +107,10 @@ textarea::placeholder, .input-textarea::placeholder {
   top: 0px;
   margin-right: 20px;
 }
+`;
+
+export const Pagina = styled('div')`
+  padding: 16px 16px;
 `;
 
 export default GlobalStyle;
