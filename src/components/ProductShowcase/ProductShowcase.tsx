@@ -3,7 +3,7 @@ import ProductCard from 'components/ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { ProductCardItem } from 'service/productService';
 import { useCarrinhoContext } from 'context/CarrinhoContext';
-import { useBuscaContext } from 'context/BuscaContext';
+import { useSearch } from 'hooks/useSearch';
 import { CarrinhoItem } from 'hooks/useCarrinho';
 import { productService } from 'service/productService';
 
@@ -14,7 +14,7 @@ function toCarrinhoItem (item: ProductCardItem) : CarrinhoItem {
 function ProductShowcase ( { debugProdutos = undefined } : { debugProdutos?: ProductCardItem[] } = { debugProdutos: undefined } ) {
   const [produtos, setProdutos] = useState([] as ProductCardItem[]);
   const [produtosFiltrados, setProdutosFiltrados] = useState([] as ProductCardItem[]);
-  const { busca } = useBuscaContext();
+  const { busca } = useSearch();
   const { addItem } = useCarrinhoContext();
   
   useEffect(() => {
