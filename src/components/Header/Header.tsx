@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { useCarrinhoContext } from 'context/CarrinhoContext';
+import { useCarrinho } from 'hooks/useCarrinho';
 import Carrinho from 'components/Carrinho/Carrinho';
 import useSearch from 'hooks/useSearch';
 
@@ -11,7 +11,7 @@ function Header () {
   const [isCarrinhoAberto, setIsCarinhoAberto] = useState(false);
   const {busca: textoBusca, setBusca: setTextoBusca} = useSearch();
   
-  const carrinho = useCarrinhoContext();
+  const carrinho = useCarrinho();
   
   const handleOnChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
     setTextoBusca(e.target.value);
