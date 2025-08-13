@@ -1,10 +1,9 @@
-//import { Provider } from 'react-redux';
-//import store from './store';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { render, renderHook, RenderOptions } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { routerFutureConfig } from 'routes';
-import BuscaContextProvider from 'context/BuscaContext';
 import CarrinhoContextProvider from 'context/CarrinhoContext';
 import { ProductCardItem } from 'service/productService';
 import { CarouselImagem } from 'service/carouselService';
@@ -15,11 +14,11 @@ const Provedores = ({ children } : { children: ReactNode }) => (
   <BrowserRouter future={routerFutureConfig}>
     <Routes>
       <Route path="*" element={
-        <BuscaContextProvider>
+        <Provider store={store}>
           <CarrinhoContextProvider>
             {children}
           </CarrinhoContextProvider>
-        </BuscaContextProvider>
+        </Provider>
       } />
     </Routes>
   </BrowserRouter>
