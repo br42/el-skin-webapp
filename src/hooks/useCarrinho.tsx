@@ -1,15 +1,7 @@
-import { useState, useCallback, useReducer } from 'react';
-
-// # export type LitObject = {[key:string]: unknown};
-export type CarrinhoItem = {
-  id: string|number,
-  name: string,
-  quantidade: number,
-  preco: number,
-  image: string,
-  url: string,
-  // # [prop: string]: unknown
-};
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from 'store';
+import { addItem, CarrinhoItem, clearCart, removeItem, updateQuantity } from 'store/slices/cartSlice';
 
 export type UseCarrinhoType = {
   itens: CarrinhoItem[],
@@ -73,31 +65,27 @@ export const carrinhoReducer = (state: CarrinhoState, action: CarrinhoReducerAct
   }
 };
 
-export function useCarrinhoCallbacks () : UseCarrinhoType {
-  const [ itens, setItens ] = useState<CarrinhoItem[]>([]);
-  const addItem = useCallback((novoItem: CarrinhoItem) : void => {
-    if (itens.find((item) => (novoItem.id === item.id))) {
-      setItens((atuaisItens) => atuaisItens.map((item) => (item.id === novoItem.id ? { ...item, quantidade: typeof(item.quantidade) == 'number' ? item.quantidade + 1 : 1 } : item)));
-    } else {
-      setItens((atuaisItens) => [ ...atuaisItens, { ...novoItem, quantidade: novoItem.quantidade || 1 } ]);
-    }
-  }, [itens]);
+export function useCarrinhoReduce () : UseCarrinhoType {
+  const dispatchItens = useDispatch<AppDispatch>();
+  const itens = useSelector((state: RootState) => state.cart.itens);
   
-  const removeItem = useCallback((id: string|number) : void => {
-    setItens((atuaisItens) => atuaisItens.filter((item) => (item.id !== id)));
-  }, [setItens]);
+  //const [ itens, dispatchItens ] = useReducer<CarrinhoItem[], [CarrinhoReducerAction]>(carrinhoReducer, []);
   
-  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
-    if (quantidade <= 0) {
-      removeItem(id);
-    } else {
-      setItens((atuaisItens) => atuaisItens.map((item) => (item.id === id ? { ...item, quantidade: quantidade } : item)));
-    }
-  }, [setItens, removeItem]);
+  const handleAddItem = useCallback((novoItem: Omit<CarrinhoItem, 'quantidade'>) : void => {
+    dispatchItens(addItem(novoItem));
+  }, [dispatchItens]);
   
-  const limparCarrinho = useCallback(() : void => {
-    setItens([]);
-  }, [setItens]);
+  const handleRemoveItem = useCallback((id: string|number) : void => {
+    dispatchItens(removeItem({id}));
+  }, [dispatchItens]);
+  
+  const handleSetQuantidade = useCallback((id: string|number, quantidade: number) : void => {
+    dispatchItens(updateQuantity({id, quantidade}));
+  }, [dispatchItens]);
+  
+  const handleLimparCarrinho = useCallback(() : void => {
+    dispatchItens(clearCart());
+  }, [dispatchItens]);
   
   const getQuantidadeTotalItens = useCallback(() : number => {
     return itens.reduce((total, item) => (total + item.quantidade), 0);
@@ -107,34 +95,16 @@ export function useCarrinhoCallbacks () : UseCarrinhoType {
     return itens.reduce((total, item) => (total + item.quantidade * item.preco), 0);
   }, [itens]);
   
-  return { itens: itens, addItem, removeItem, setQuantidade, limparCarrinho, getQuantidadeTotalItens, getPrecoTotal };
+  return {
+    itens: itens,
+    addItem: handleAddItem,
+    removeItem: handleRemoveItem,
+    setQuantidade: handleSetQuantidade,
+    limparCarrinho: handleLimparCarrinho,
+    getQuantidadeTotalItens,
+    getPrecoTotal
+  };
 }
 
-export default function useCarrinhoReduce () : UseCarrinhoType {
-  const [ itens, dispatchItens ] = useReducer<CarrinhoItem[], [CarrinhoReducerAction]>(carrinhoReducer, []);
-  const addItem = useCallback((novoItem: CarrinhoItem) : void => {
-    dispatchItens({type: ADD_PRODUTO, payload: novoItem});
-  }, [dispatchItens]);
-  
-  const removeItem = useCallback((id: string|number) : void => {
-    dispatchItens({type: REMOVE_PRODUTO, payload: id});
-  }, [dispatchItens]);
-  
-  const setQuantidade = useCallback((id: string|number, quantidade: number) : void => {
-    dispatchItens({type: UPDATE_QUANTIDADE, payload: {id, quantidade}});
-  }, [dispatchItens]);
-  
-  const limparCarrinho = useCallback(() : void => {
-    dispatchItens({type: CLEAR_CARRINHO});
-  }, [dispatchItens]);
-  
-  const getQuantidadeTotalItens = useCallback(() : number => {
-    return itens.reduce((total, item) => (total + item.quantidade), 0);
-  }, [itens]);
-  
-  const getPrecoTotal = useCallback(() : number => {
-    return itens.reduce((total, item) => (total + item.quantidade * item.preco), 0);
-  }, [itens]);
-  
-  return { itens: itens, addItem, removeItem, setQuantidade, limparCarrinho, getQuantidadeTotalItens, getPrecoTotal };
-}
+export const useCarrinho = useCarrinhoReduce;
+export default useCarrinho;

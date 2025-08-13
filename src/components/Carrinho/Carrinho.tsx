@@ -1,5 +1,5 @@
 import './Carrinho.css';
-import { useCarrinhoContext } from 'context/CarrinhoContext';
+import { useCarrinho } from 'hooks/useCarrinho';
 import { useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ function formatarPreco (preco: number): string {
 }
 
 function Carrinho ({ isAberto, onClose, 'data-testid': dataTestid } : { isAberto: boolean, onClose: () => void, 'data-testid'?: string }) {
-  const carrinho = useCarrinhoContext();
+  const carrinho = useCarrinho();
   const { itens, getPrecoTotal, setQuantidade, removeItem } = carrinho;
   
   const recebeuClique = useCallback((e: React.MouseEvent)=>{

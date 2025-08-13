@@ -18,13 +18,9 @@ const searchSlice = createSlice({
     }) => {
       state.busca = action.payload;
     },
-    clearSearch: (state: SearchState, action: {
-      payload?: never;
-      type: string;
-    }) => {
+    clearSearch: (state: SearchState) => {
       state.busca = '';
-      if (!action) return;
-    }
+    },
   }
 });
 
