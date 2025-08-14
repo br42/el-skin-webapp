@@ -5,9 +5,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useCarrinhoContext } from 'context/CarrinhoContext';
 import Carrinho from 'components/Carrinho/Carrinho';
+import { useBuscaContext } from 'context/BuscaContext';
 
 function Header () {
-  const [textoBusca, setTextoBusca] = useState('');
+  const { busca: textoBusca, setBusca: setTextoBusca } = useBuscaContext();
   const [isCarrinhoAberto, setIsCarinhoAberto] = useState(false);
   
   const carrinho = useCarrinhoContext();
