@@ -1,4 +1,4 @@
-import { useBuscaContext } from 'context/BuscaContext';
+import { useSearch } from 'hooks/useSearch';
 import Carrinho from './Carrinho';
 import Header from 'components/Header/Header';
 import { act, cleanup, render, renderHook, screen } from 'test-utils';
@@ -145,8 +145,8 @@ describe('Testando componente "Carrinho"', () => {
     expect(searchbox).toHaveValue('creme');
     
     renderHook(async () => await act(async () => {
-      const { busca } = useBuscaContext();
-      expect(busca).toBe('');
+      const { busca } = useSearch();
+      expect(busca).toBe('creme');
     }));
     
     cleanup();
