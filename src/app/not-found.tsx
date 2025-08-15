@@ -1,11 +1,12 @@
+'use client';
 import './ErrorNotFound.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useRouter, usePathname } from 'next/navigation';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ErrorNotFound() {
-  const urlpath = useParams()['*'];
-  const navigate = useNavigate();
+  const urlpath = usePathname()?.substring(1);
+  const router = useRouter();
   
   return (
     <div className="pagina">
@@ -16,7 +17,7 @@ function ErrorNotFound() {
         Não foi possível encontrar a página requisitada na URL &quot;/{urlpath}&quot;.
       </p>
       <div className="center">
-        <button data-testid="notfound-botao-voltar" onClick={()=>navigate(-1)}>
+        <button data-testid="notfound-botao-voltar" onClick={()=>router.back()}>
           <FontAwesomeIcon icon={faArrowLeft} />
           <span>Voltar</span>
         </button>

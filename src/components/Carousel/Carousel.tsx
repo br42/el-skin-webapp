@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { CarouselImagem, carouselService,  } from 'service/carouselService';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function Carousel () {
   const [carouselImage, setCarouselImage] = useState(0);
@@ -69,7 +69,7 @@ function Carousel () {
               </div>
             }
           </div>
-          <Link to={imagens[carouselImage]?.url || '#'}>
+          <Link href={imagens[carouselImage]?.url || '#'}>
             <button className="carrousel-image-banner-botao-comprar" >
               <span>
                 {'comprar agora'}

@@ -1,44 +1,44 @@
 import './Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebookF, faYoutube, faPinterest, faTwitter, faLinkedin, faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { NavLink } from 'react-router-dom';
+import NavLink from 'next/link';
 
 function Footer () {
   return (
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-social-icons">
-          <NavLink to="#" title="Instagram">
+          <NavLink href="#" title="Instagram">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faInstagram} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Facebook">
+          <NavLink href="#" title="Facebook">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faFacebookF} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Youtube">
+          <NavLink href="#" title="Youtube">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faYoutube} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Pinterest">
+          <NavLink href="#" title="Pinterest">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faPinterest} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Chirper">
+          <NavLink href="#" title="Chirper">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faTwitter} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Linkedin">
+          <NavLink href="#" title="Linkedin">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faLinkedin} />
             </div>
           </NavLink>
-          <NavLink to="#" title="Spotify">
+          <NavLink href="#" title="Spotify">
             <div className="footer-social-icon">
               <FontAwesomeIcon icon={faSpotify} />
             </div>
@@ -49,13 +49,13 @@ function Footer () {
             <p className="footer-nav-categoria">
               Sobre a AL SKIN
             </p>
-            <NavLink to="/sobre">
+            <NavLink href="/sobre">
               Quem somos
             </NavLink>
-            <NavLink to="/sobre">
+            <NavLink href="/sobre">
               Time AL SKIN
             </NavLink>
-            <NavLink to="/sobre">
+            <NavLink href="/sobre">
               Carreiras
             </NavLink>
           </div>
@@ -63,10 +63,10 @@ function Footer () {
             <p className="footer-nav-categoria">
               Loja AL SKIN
             </p>
-            <NavLink to="/">
+            <NavLink href="/">
               Lojas Físicas
             </NavLink>
-            <NavLink to="/">
+            <NavLink href="/">
               Devolução
             </NavLink>
           </div>
@@ -74,10 +74,10 @@ function Footer () {
             <p className="footer-nav-categoria">
               Fale conosco
             </p>
-            <NavLink to="/faleconosco">
+            <NavLink href="/faleconosco">
               oi@alskin.com.br
             </NavLink>
-            <NavLink to="/faleconosco">
+            <NavLink href="/faleconosco">
               Ajuda
             </NavLink>
           </div>
@@ -85,13 +85,13 @@ function Footer () {
             <p className="footer-nav-categoria">
               Mais sobre a AL SKIN
             </p>
-            <NavLink to="/blog">
+            <NavLink href="/blog">
               Blog
             </NavLink>
-            <NavLink to="/blog">
+            <NavLink href="/blog">
               Minha pele
             </NavLink>
-            <NavLink to="/blog">
+            <NavLink href="/blog">
               Ingredientes
             </NavLink>
           </div>

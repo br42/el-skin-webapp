@@ -79,7 +79,7 @@ function FaleConosco() {
           <p></p>
         </div>
         <div className="faleconosco-container-right">
-          <img alt="" className="faleconosco-imagem-preencher" src={rightImg} />
+          <img alt="" className="faleconosco-imagem-preencher" src={rightImg.src} />
         </div>
       </div>
       

@@ -4,7 +4,7 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import rightImg from 'assets/images/image 12.png';
 import leftImg from 'assets/images/image 7.png';
 import wideImg from 'assets/images/image 13.png';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function Sobre() {
   return (
@@ -30,11 +30,11 @@ function Sobre() {
             Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
           </p>
         
-          <img alt="" className="sobre-imagem-preencher" src={leftImg} />
+          <img alt="" className="sobre-imagem-preencher" src={leftImg.src} />
         </div>
         
         <div className="sobre-container-right">
-          <img alt="" className="sobre-imagem-preencher" src={rightImg} />
+          <img alt="" className="sobre-imagem-preencher" src={rightImg.src} />
           
           <p>
             VAMOS CONVERSAR?
@@ -43,7 +43,7 @@ function Sobre() {
           </p>
           
           <p>
-            <Link to="/faleconosco">
+            <Link href="/faleconosco">
               <button className="button-contact">
                 <FontAwesomeIcon icon={faComment} />
                 <span>
@@ -55,7 +55,7 @@ function Sobre() {
         </div>
       </div>
       <div className="sobre-container-bottom">
-        <img alt="" className="sobre-imagem-preencher" src={wideImg} />
+        <img alt="" className="sobre-imagem-preencher" src={wideImg.src} />
       </div>
     </div>
   );
