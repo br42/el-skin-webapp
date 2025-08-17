@@ -7,12 +7,6 @@ import userEvent from '@testing-library/user-event';
 jest.mock('service/api.ts');
 //jest.mock('service/carouselService.ts');
 
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate
-}));
-
 describe('Testando componente "Carousel"', () => {
   afterEach(() => {
     jest.restoreAllMocks();

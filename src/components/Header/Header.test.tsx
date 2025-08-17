@@ -9,11 +9,6 @@ jest.mock('service/api.ts');
 jest.mock('service/carouselService.ts');
 const mockProductService = jest.fn();
 jest.mock('service/productService.ts');
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate
-}));
 
 mockProductService.mockImplementation(() => ({
   // # ...jest.requireActual('service/productService.ts'),

@@ -2,7 +2,7 @@
 
 import Carousel from '@/components/Carousel/Carousel';
 import ProductShowcase from '@/components/ProductShowcase/ProductShowcase';
-import styles from './page.module.css';
+import styles from './styles.module.css';
 
 function Home() {
   return (

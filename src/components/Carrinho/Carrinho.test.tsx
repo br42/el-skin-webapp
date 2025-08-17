@@ -4,7 +4,7 @@ import Header from 'components/Header/Header';
 import { act, cleanup, render, renderHook, screen } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import { useRef } from 'react';
-import Home from 'pages/Home/Home';
+import Home from 'app/page';
 import Footer from 'components/Footer/Footer';
 
 // # import { useNavigate } from 'react-router';
@@ -12,11 +12,6 @@ jest.mock('service/api.ts');
 //jest.mock('service/carouselService.ts');
 //const mockProductService = jest.fn();
 //jest.mock('service/productService.ts');
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate
-}));
 
 describe('Testando componente "Carrinho"', () => {
   afterEach(() => {

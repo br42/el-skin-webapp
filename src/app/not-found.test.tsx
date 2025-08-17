@@ -1,16 +1,20 @@
 import { act, cleanup, render, screen } from 'test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import ErrorNotFound from './ErrorNotFound';
+import ErrorNotFound from './not-found';
 
-// # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
 jest.mock('service/carouselService.ts');
 jest.mock('service/productService.ts');
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate
+
+const mockRouter = jest.fn(()=>({
+  back: jest.fn(()=>undefined)
+}));
+const mockPathname = jest.fn(() => '/');
+jest.mock('next/navigation', () => ({
+  ...jest.requireActual('next/navigation'),
+  useRouter: () => mockRouter(),
+  usePathname: () => mockPathname()
 }));
 
 describe('Testando página "Error Not Found"', () => {

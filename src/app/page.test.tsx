@@ -5,11 +5,11 @@ import Home from './page';
 jest.mock('service/api.ts');
 jest.mock('service/carouselService.ts');
 jest.mock('service/productService.ts');
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockNavigate
-}));
+// # const mockNavigate = jest.fn();
+// # jest.mock('react-router-dom', () => ({
+// #   ...jest.requireActual('react-router-dom'),
+// #   useNavigate: () => mockNavigate
+// # }));
 
 describe('Testando página "Home"', () => {
   afterEach(() => {

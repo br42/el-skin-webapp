@@ -1,4 +1,4 @@
-import './Sobre.css';
+import './styles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import rightImg from 'assets/images/image 12.png';

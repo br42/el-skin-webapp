@@ -2,6 +2,11 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
+import nextJest from 'next/jest.js'
+
+const createJestConfig = nextJest({
+  'dir': './src/'
+});
 
 /** @type {import('jest').Config} */
 const config = {
@@ -294,4 +299,4 @@ const config = {
 //  resetMocks: true,
 //};
 
-export default config;
+export default createJestConfig(config);

@@ -1,26 +1,20 @@
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { render, renderHook, RenderOptions } from '@testing-library/react';
 import { ReactNode } from 'react';
-import { routerFutureConfig } from 'routes';
 import { ProductCardItem } from 'service/productService';
 import { CarouselImagem } from 'service/carouselService';
 
 const Provedores = ({ children } : { children: ReactNode }) => (
   //<Provider store={store}>
   //<div data-testid="context-children" />
-  <BrowserRouter future={routerFutureConfig}>
-    <Routes>
-      <Route path="*" element={
-        <Provider store={store}>
-          <>
-            {children}
-          </>
-        </Provider>
-      } />
-    </Routes>
-  </BrowserRouter>
+  <> {
+    <Provider store={store}>
+      <>
+        {children}
+      </>
+    </Provider>
+  } </>
   //</Provider>
 );
 
