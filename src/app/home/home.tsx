@@ -1,6 +1,6 @@
 import Carousel from 'components/Carousel/Carousel';
 import ProductShowcase from 'components/ProductShowcase/ProductShowcase';
-import './Home.css';
+import './styles.css';
 
 function Home() {
   return (

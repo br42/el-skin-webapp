@@ -1,4 +1,4 @@
-import './FaleConosco.css';
+import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import rightImg from 'assets/images/image 14.png';

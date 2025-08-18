@@ -1,21 +1,21 @@
-import { useSearch } from 'hooks/useSearch';
 import Carrinho from './Carrinho';
 import Header from 'components/Header/Header';
-import { act, cleanup, render, renderHook, screen } from 'test-utils';
+import { act, cleanup, render, screen } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import { useRef } from 'react';
 import Home from 'app/page';
 import Footer from 'components/Footer/Footer';
 
-// # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
-//jest.mock('service/carouselService.ts');
-//const mockProductService = jest.fn();
-//jest.mock('service/productService.ts');
 
 describe('Testando componente "Carrinho"', () => {
+  beforeEach(() => {
+    //jest.useFakeTimers();
+  });
   afterEach(() => {
-    //jest.restoreAllMocks();
+    //jest.runOnlyPendingTimers();
+    //jest.useRealTimers();
+    jest.restoreAllMocks();
   });
   test('Deve existir modal de Carrinho dentro do Header', async () => {
     await act(() => render(
@@ -48,12 +48,13 @@ describe('Testando componente "Carrinho"', () => {
     
     //const carrinhoModal = screen.getByTestId('carrinho-modal');
     const carrinhoModalFechar = screen.getByTestId('carrinho-modal-fechar');
-    userEvent.click(carrinhoModalFechar);
+    await act(async () => userEvent.click(carrinhoModalFechar));
     expect(closefn).toHaveBeenCalledTimes(1);
     
     cleanup();
   });
   test('Deve renderizar modal de Carrinho, carrinho cheio', async () => {
+    
     await act(async () => render(
       <Header />
     ));
@@ -61,27 +62,27 @@ describe('Testando componente "Carrinho"', () => {
     const carrinhoModal = screen.getByTestId('carrinho-modal');
     const carrinhoButton = screen.getByTestId('header-iconcart');
     
-    userEvent.click(carrinhoButton);
+    await act(async () => userEvent.click(carrinhoButton));
     expect(carrinhoModal).toBeInTheDocument();
     expect(carrinhoModal).not.toHaveStyle({display: 'none'});
     
-    userEvent.click(carrinhoModal);
+    await act(async () => userEvent.click(carrinhoModal));
     expect(carrinhoModal).toHaveStyle({display: 'none'});
     
-    userEvent.click(carrinhoButton);
+    await act(async () => userEvent.click(carrinhoButton));
     const carrinhoModalFechar = screen.getByTestId('carrinho-modal-fechar');
-    userEvent.click(carrinhoModalFechar);
+    await act(async () => userEvent.click(carrinhoModalFechar));
     expect(carrinhoModal).toHaveStyle({display: 'none'});
     
     const botoesComprar = screen.queryAllByText('comprar');
     
-    botoesComprar.forEach((item) => {
+    await act(async () => botoesComprar.forEach((item) => {
       userEvent.click(item);
-    });
+    }));
     
-    userEvent.click(carrinhoButton);
+    await act(async () => userEvent.click(carrinhoButton));
     expect(carrinhoModal).not.toHaveStyle({display: 'none'});
-    userEvent.type(carrinhoModal, '\x1b');
+    await act(async () => userEvent.type(carrinhoModal, '{Escape}'));
     expect(carrinhoModal).toHaveStyle({display: 'none'});
     
     cleanup();
@@ -108,41 +109,24 @@ describe('Testando componente "Carrinho"', () => {
     
     const botoesComprar = screen.getAllByText('comprar');
     
-    botoesComprar.forEach((item) => {
-      userEvent.click(item);
-    });
+    await act(async () => botoesComprar.map((item) => {
+      return userEvent.click(item);
+    }));
     
-    userEvent.click(carrinhoButton);
+    //await act(async () => jest.advanceTimersByTimeAsync(5000));
+    await act(async () => userEvent.click(carrinhoButton));
     expect(carrinhoModal).not.toHaveStyle({display: 'none'});
     
-    userEvent.click(screen.getAllByTestId('carrinho-quantidade-button-plus')[0]);
-    userEvent.click(screen.getAllByTestId('carrinho-quantidade-button-minus')[0]);
-    userEvent.click(screen.getAllByTestId('carrinho-remover-button')[0]);
+    await act(async () => {
+      userEvent.click(screen.getAllByTestId('carrinho-quantidade-button-plus')[0]);
+      userEvent.click(screen.getAllByTestId('carrinho-quantidade-button-minus')[0]);
+      userEvent.click(screen.getAllByTestId('carrinho-remover-button')[0]);
+    });
     
-    userEvent.type(carrinhoModal, '\x1b');
+    await act(async () => userEvent.type(carrinhoModal, '{Escape}'));
     expect(carrinhoModal).toHaveStyle({display: 'none'});
     
     //renderresult.rerender(<Home/>);
-    
-    cleanup();
-  });
-  test('Deve executar Busca', async () => {
-    await act(async () => render(
-      <Header />
-    ));
-    
-    const searchbox = screen.getByTestId('header-searchboxinput');
-    const iconelupa = screen.getByTestId('header-lupa');
-    
-    userEvent.type(searchbox, 'creme');
-    userEvent.click(iconelupa);
-    
-    expect(searchbox).toHaveValue('creme');
-    
-    renderHook(async () => await act(async () => {
-      const { busca } = useSearch();
-      expect(busca).toBe('creme');
-    }));
     
     cleanup();
   });

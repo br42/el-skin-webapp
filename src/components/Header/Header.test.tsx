@@ -1,32 +1,15 @@
 import { useSearch } from 'hooks/useSearch';
 import Header from './Header';
-import { act, cleanup, mockGetListaProdutos, render, renderHook, screen } from 'test-utils';
+import { act, cleanup, render, renderHook, screen } from 'test-utils';
 import userEvent from '@testing-library/user-event';
-import { ProductCardItem } from 'service/productService';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
-jest.mock('service/carouselService.ts');
-const mockProductService = jest.fn();
-jest.mock('service/productService.ts');
-
-mockProductService.mockImplementation(() => ({
-  // # ...jest.requireActual('service/productService.ts'),
-  productService: {
-    getProducts: async (): Promise<ProductCardItem[]> => {
-      return mockGetListaProdutos();
-    },
-    getProductById: async (id: string|number): Promise<ProductCardItem> => {
-      const produto = mockGetListaProdutos().find((item) => item.id === id);
-      if (produto === undefined) {
-        throw Error('Erro 404: Produto não encontrado');
-      }
-      return produto;
-    }
-  }
-}));
 
 describe('Testando componente "Header"', () => {
+  beforeEach(() => {
+    ;
+  });
   afterEach(() => {
     //jest.restoreAllMocks();
   });
@@ -60,14 +43,16 @@ describe('Testando componente "Header"', () => {
     const searchbox = screen.getByTestId('header-searchboxinput');
     const iconelupa = screen.getByTestId('header-lupa');
     
-    userEvent.type(searchbox, 'creme');
-    userEvent.click(iconelupa);
+    const valoresperado = 'creme';
     
-    expect(searchbox).toHaveValue('creme');
+    await act(async () => userEvent.type(searchbox, valoresperado));
+    await act(async () => userEvent.click(iconelupa));
     
-    renderHook(async () => await act(async () => {
+    expect(searchbox).toHaveValue(valoresperado);
+    
+    await act(async () => renderHook(async () => {
       const { busca } = useSearch();
-      expect(busca).toBe('creme');
+      expect(busca).toBe(valoresperado);
     }));
     
     cleanup();

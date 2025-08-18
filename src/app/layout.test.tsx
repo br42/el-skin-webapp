@@ -1,10 +1,16 @@
-import { act, cleanup, render, screen } from 'test-utils';
-import Home from './Home';
+import { act, cleanup, render, screen } from '@testing-library/react';
+import Layout from './layout';
+import Home from './page';
 
 // # import { useNavigate } from 'react-router';
 jest.mock('service/api.ts');
 jest.mock('service/carouselService.ts');
 jest.mock('service/productService.ts');
+// # const mockNavigate = jest.fn();
+// # jest.mock('react-router-dom', () => ({
+// #   ...jest.requireActual('react-router-dom'),
+// #   useNavigate: () => mockNavigate
+// # }));
 
 describe('Testando página "Home"', () => {
   afterEach(() => {
@@ -12,9 +18,12 @@ describe('Testando página "Home"', () => {
   });
   test('Deve renderizar página "Home" com categorias', async () => {
     render(await act(() =>
-      <Home />
-    ), {}
-    );
+      <Layout>
+        <Home />
+      </Layout>
+    ), {
+      container: document
+    });
     //const categorias = screen.getAllByTestId('home-categorias');
     const categorias = screen.getAllByTestId('banner-compra');
     

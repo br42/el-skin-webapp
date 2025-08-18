@@ -2,7 +2,7 @@
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
-import nextJest from 'next/jest.js'
+import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
   'dir': './src/'
@@ -107,8 +107,8 @@ const config = {
   // moduleNameMapper: {},
 
   moduleNameMapper: {
-    '^react-native$': 'react-native-web',
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    //'^react-native$': 'react-native-web',
+    //'^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 
@@ -163,13 +163,16 @@ const config = {
   // setupFiles: [],
   setupFiles: [
     //'<rootDir>/node_modules/react-app-polyfill/jsdom'
-    'react-app-polyfill/jsdom',
+    //'react-app-polyfill/jsdom',
   ],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
   setupFilesAfterEnv: [
-    '@testing-library/jest-dom'
+    '@testing-library/react',
+    '@testing-library/dom',
+    '@testing-library/jest-dom',
+    '@testing-library/user-event'
   ],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
@@ -215,13 +218,13 @@ const config = {
   // A map from regular expressions to paths to transformers
   // transform: undefined,
   transform: {
-    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': (
-      '<rootDir>/node_modules/react-scripts/config/jest/babelTransform.js'
-    ),
-    '^.+\\.css$': ('<rootDir>/node_modules/react-scripts/config/jest/cssTransform.js'),
-    '^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)': (
-      '<rootDir>/node_modules/react-scripts/config/jest/fileTransform.js'
-    ),
+    //'^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': (
+    //  '<rootDir>/node_modules/react-scripts/config/jest/babelTransform.js'
+    //),
+    //'^.+\\.css$': ('<rootDir>/node_modules/react-scripts/config/jest/cssTransform.js'),
+    //'^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)': (
+    //  '<rootDir>/node_modules/react-scripts/config/jest/fileTransform.js'
+    //),
   },
   transformIgnorePatterns: [
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',

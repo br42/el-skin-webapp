@@ -54,12 +54,12 @@ describe('Testando componente "ProductCard"', () => {
     expect(screen.getByText('Creme Hidratante Facial')).toBeInTheDocument();
     
     expect(screen.getByTestId('productcard')).toBeInTheDocument();
-    userEvent.click(screen.getByTestId('productcard'));
-    expect(onCliqueProduto).toBeCalledTimes(1);
+    await act(async () => userEvent.click(screen.getByTestId('productcard')));
+    expect(onCliqueProduto).toHaveBeenCalledTimes(1);
     
     expect(screen.getByTestId('productcard-button-comprar')).toBeInTheDocument();
-    userEvent.click(screen.getByTestId('productcard-button-comprar'));
-    expect(onCliqueComprar).toBeCalledTimes(1);
+    await act(async () => userEvent.click(screen.getByTestId('productcard-button-comprar')));
+    expect(onCliqueComprar).toHaveBeenCalledTimes(1);
     
     cleanup();
   });
